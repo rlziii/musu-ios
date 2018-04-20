@@ -17,11 +17,14 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    //MARK: Properties
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginStatusLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        jsonTest()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,8 +32,17 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func jsonTest() {
-        let parameters = ["function": "loginAttempt", "username": "test", "password": "test"] as Dictionary<String, String>
+    func changeLoginStatus(to: String) {
+        loginStatusLabel.text = to
+    }
+    
+    //MARK: Actions
+
+    @IBAction func loginButton(_ sender: UIButton) {
+        let username = usernameTextField.text
+        let password = passwordTextField.text
+        
+        let parameters = ["function": "loginAttempt", "username": username, "password": password] as! Dictionary<String, String>
         
         let url = URL(string: "http://www.musuapp.com/API/API.php")!
         
@@ -59,7 +71,22 @@ class FirstViewController: UIViewController {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    
                     print(json)
+                    
+                    // https://developer.apple.com/documentation/code_diagnostics/main_thread_checker
+                    
+                    if let success = json["success"] as? Int {
+                        if (success == 1) {
+                            DispatchQueue.main.async {
+                                self.changeLoginStatus(to: json["message"] as! String)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.changeLoginStatus(to: json["error"] as! String)
+                            }
+                        }
+                    }
                 }
             } catch let error {
                 print(error.localizedDescription)
@@ -70,4 +97,3 @@ class FirstViewController: UIViewController {
     }
 
 }
-
