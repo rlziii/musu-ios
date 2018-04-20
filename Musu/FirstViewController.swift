@@ -39,6 +39,9 @@ class FirstViewController: UIViewController {
     //MARK: Actions
 
     @IBAction func loginButton(_ sender: UIButton) {
+        self.usernameTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        
         let username = usernameTextField.text
         let password = passwordTextField.text
         
