@@ -18,6 +18,7 @@ import UIKit
 class FirstViewController: UIViewController {
 
     //MARK: Properties
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginStatusLabel: UILabel!
@@ -39,23 +40,28 @@ class FirstViewController: UIViewController {
     //MARK: Actions
 
     @IBAction func loginButton(_ sender: UIButton) {
+        // Dismiss the keyboard when login button is pressed
         self.usernameTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         
         let username = usernameTextField.text
         let password = passwordTextField.text
         
-        let json = ["function": "loginWithUsername", "username": username, "password": password] as! Dictionary<String, String>
+        let jsonPayload = [
+            "function": "loginWithUsername",
+            "username": username,
+            "password": password,
+            ] as! Dictionary<String, String>
         
-        connectToAPI(withJSON: json) { (json) in
-            if let success = json["success"] as? Int {
+        callAPI(withJSON: jsonPayload) { (jsonResponse) in
+            if let success = jsonResponse["success"] as? Int {
                 if (success == 1) {
                     DispatchQueue.main.async {
-                        self.changeLoginStatus(to: (json["message"])! as! String)
+                        self.changeLoginStatus(to: (jsonResponse["message"])! as! String)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.changeLoginStatus(to: (json["error"])! as! String)
+                        self.changeLoginStatus(to: (jsonResponse["error"])! as! String)
                     }
                 }
             }

@@ -8,9 +8,9 @@
 
 import Foundation
 
-func connectToAPI(withJSON: Dictionary<String, String>, Completion block: @escaping ([String: Any]) -> ()) {
+func callAPI(withJSON: Dictionary<String, String>, Completion block: @escaping ([String: Any]) -> ()) {
 
-    let parameters = withJSON
+    let jsonPayload = withJSON
 
     let url = URL(string: "http://www.musuapp.com/API/API.php")!
 
@@ -20,7 +20,7 @@ func connectToAPI(withJSON: Dictionary<String, String>, Completion block: @escap
     request.httpMethod = "POST"
 
     do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        request.httpBody = try JSONSerialization.data(withJSONObject: jsonPayload, options: .prettyPrinted)
     } catch let error {
         print(error.localizedDescription)
     }
@@ -38,8 +38,8 @@ func connectToAPI(withJSON: Dictionary<String, String>, Completion block: @escap
         }
 
         do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                block(json)
+            if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                block(jsonResponse)
             }
         } catch let error {
             print(error.localizedDescription)
