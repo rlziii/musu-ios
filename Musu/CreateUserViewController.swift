@@ -9,6 +9,9 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    
+    //MARK: Properties
+
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -30,6 +33,8 @@ class SecondViewController: UIViewController {
     func changeCreateUserStatus(to: String) {
         createUserStatusLabel.text = to
     }
+
+    //MARK: Actions
 
     @IBAction func createUser(_ sender: UIButton) {
         // Dismiss the keyboard when login button is pressed
