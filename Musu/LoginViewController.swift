@@ -56,6 +56,7 @@ class FirstViewController: UIViewController {
         callAPI(withJSON: jsonPayload) { (jsonResponse) in
             if let success = jsonResponse["success"] as? Int {
                 if (success == 1) {
+                    self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
                     DispatchQueue.main.async {
                         self.changeLoginStatus(to: (jsonResponse["message"])! as! String)
                     }
