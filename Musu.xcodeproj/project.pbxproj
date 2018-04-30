@@ -64,11 +64,11 @@
 				B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */,
 				B1B5B04320884FF5001BF2C7 /* CreateUserViewController.swift */,
 				B1E6CC16208EDB0C00276697 /* Post.swift */,
+				B12CADF5208984660023746D /* connectToAPI.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
 				B1B5B04820884FF7001BF2C7 /* Assets.xcassets */,
 				B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */,
 				B1B5B04D20884FF7001BF2C7 /* Info.plist */,
-				B12CADF5208984660023746D /* connectToAPI.swift */,
 			);
 			path = Musu;
 			sourceTree = "<group>";

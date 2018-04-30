@@ -9,7 +9,7 @@
 import UIKit
 
 class Post {
-    
+
     //MARK: Properties
     
     var username: String
@@ -18,5 +18,13 @@ class Post {
     var userID: Int
     var image: UIImage?
     var tags: Array<String>
-    
+
+    init() {
+       username = ""
+        bodyText = ""
+        postID = 0
+        userID = 0
+        image = nil
+        tags = []
+    }
 }
