@@ -20,11 +20,20 @@ class Post {
     var tags: Array<String>
 
     init() {
-       username = ""
+        username = ""
         bodyText = ""
         postID = 0
         userID = 0
         image = nil
         tags = []
+    }
+    
+    func testPost() {
+        username = "TESTUSER"
+        bodyText = "Test body text; test body text; test body text."
+        postID = 1;
+        userID = 1;
+        image = UIImage(named: "placeholder_image")
+        tags = ["TAG1", "TAG2", "TAG3"]
     }
 }
