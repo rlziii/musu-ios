@@ -24,7 +24,10 @@ class PostTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // Load sample data
-        loadSamplePosts()
+        // loadSamplePosts()
+        
+        // Load JSON data
+        loadPostsPersonal()
     }
 
     override func didReceiveMemoryWarning() {
@@ -106,6 +109,54 @@ class PostTableViewController: UITableViewController {
     */
 
     //MARK: Private Methods
+    
+    private func loadPostsPersonal() {
+       let jsonPayload = [
+        "function": "getPostsPersonal",
+        "userID": "5",
+        "numberOfPosts": "100",
+        "token": "d6ec38a610fc4eda5fc09889976053dc7c3edd1183220ba8d70424c0eb725d00"
+        ] as! Dictionary<String, String>
+        
+        callAPI(withJSON: jsonPayload) { (jsonResponse) in
+            if let success = jsonResponse["success"] as? Int {
+                if (success == 1) {
+                    // ***
+                    for post in jsonResponse["results"] as! [Dictionary<String, Any>] {
+                        let username = post["username"] as! String
+                        let bodyText = post["bodyText"] as! String
+                        let postID = post["postID"] as! Int
+                        let userID = post["userID"] as! Int
+                        let imageURL = URL(string: post["imageURL"] as! String)
+                        let tags = post["tags"] as! Array<String>
+                        
+//                        DispatchQueue.global().async {
+//                            let data = try? Data(contentsOf: imageURL!)
+//                            DispatchQueue.main.async {
+//                                imageView.image = UIImage(data: data!)
+//                            }
+//                        }
+                        
+                        let imageData = try? Data(contentsOf: imageURL!)
+                        let image = UIImage(data: imageData!)
+                        
+                        guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags) else {
+                            fatalError("Unable to instantiate post")
+                        }
+                        
+                        self.posts += [_post]
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    // ***
+                } else {
+                    fatalError("getPostsPersonal failed")
+                }
+            }
+        }
+    }
     
     private func loadSamplePosts() {
         let image1 = UIImage(named: "placeholder_image")
