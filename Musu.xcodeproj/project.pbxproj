@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B12CADF6208984660023746D /* connectToAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CADF5208984660023746D /* connectToAPI.swift */; };
+		B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4781209A5261003C86DE /* PostTableViewCell.swift */; };
+		B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4783209A55B2003C86DE /* PostTableViewController.swift */; };
 		B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B03F20884FF5001BF2C7 /* AppDelegate.swift */; };
 		B1B5B04220884FF5001BF2C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */; };
 		B1B5B04420884FF5001BF2C7 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B04320884FF5001BF2C7 /* CreateUserViewController.swift */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		B12CADF5208984660023746D /* connectToAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectToAPI.swift; sourceTree = "<group>"; };
+		B13F4781209A5261003C86DE /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		B13F4783209A55B2003C86DE /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		B1B5B03C20884FF5001BF2C7 /* Musu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B5B03F20884FF5001BF2C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */,
 				B1B5B04320884FF5001BF2C7 /* CreateUserViewController.swift */,
 				B1E6CC16208EDB0C00276697 /* Post.swift */,
+				B13F4781209A5261003C86DE /* PostTableViewCell.swift */,
+				B13F4783209A55B2003C86DE /* PostTableViewController.swift */,
 				B12CADF5208984660023746D /* connectToAPI.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
 				B1B5B04820884FF7001BF2C7 /* Assets.xcassets */,
@@ -149,6 +155,8 @@
 				B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */,
 				B1B5B04220884FF5001BF2C7 /* LoginViewController.swift in Sources */,
 				B1E6CC17208EDB0C00276697 /* Post.swift in Sources */,
+				B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */,
+				B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

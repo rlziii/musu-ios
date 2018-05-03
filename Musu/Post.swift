@@ -19,21 +19,19 @@ class Post {
     var image: UIImage?
     var tags: Array<String>
 
-    init() {
-        username = ""
-        bodyText = ""
-        postID = 0
-        userID = 0
-        image = nil
-        tags = []
+    init?(username: String, bodyText: String, postID: Int, userID: Int, image: UIImage?, tags: Array<String>) {
+        self.username = username
+        self.bodyText = bodyText
+        self.postID = postID
+        self.userID = userID
+        self.image = image
+        self.tags = tags
     }
     
-    func testPost() {
-        username = "TESTUSER"
-        bodyText = "Test body text; test body text; test body text."
-        postID = 1;
-        userID = 1;
-        image = UIImage(named: "placeholder_image")
-        tags = ["TAG1", "TAG2", "TAG3"]
+    func tagsToString() -> String {
+        return tags.description
+        
+        // perhaps a better implementation
+        // return tags.joined(separator: ", ")
     }
 }
