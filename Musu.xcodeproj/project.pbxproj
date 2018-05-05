@@ -16,6 +16,7 @@
 		B1B5B04720884FF5001BF2C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B5B04520884FF5001BF2C7 /* Main.storyboard */; };
 		B1B5B04920884FF7001BF2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1B5B04820884FF7001BF2C7 /* Assets.xcassets */; };
 		B1B5B04C20884FF7001BF2C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */; };
+		B1BCD40C209DDE530061CE59 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */; };
 		B1E6CC17208EDB0C00276697 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6CC16208EDB0C00276697 /* Post.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		B1B5B04820884FF7001BF2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1B5B04B20884FF7001BF2C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1B5B04D20884FF7001BF2C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		B1E6CC16208EDB0C00276697 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				B1E6CC16208EDB0C00276697 /* Post.swift */,
 				B13F4781209A5261003C86DE /* PostTableViewCell.swift */,
 				B13F4783209A55B2003C86DE /* PostTableViewController.swift */,
+				B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */,
 				B12CADF5208984660023746D /* connectToAPI.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
 				B1B5B04820884FF7001BF2C7 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				B12CADF6208984660023746D /* connectToAPI.swift in Sources */,
 				B1B5B04420884FF5001BF2C7 /* CreateUserViewController.swift in Sources */,
 				B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */,
+				B1BCD40C209DDE530061CE59 /* KeychainPasswordItem.swift in Sources */,
 				B1B5B04220884FF5001BF2C7 /* LoginViewController.swift in Sources */,
 				B1E6CC17208EDB0C00276697 /* Post.swift in Sources */,
 				B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */,

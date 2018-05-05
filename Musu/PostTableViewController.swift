@@ -111,12 +111,29 @@ class PostTableViewController: UITableViewController {
     //MARK: Private Methods
     
     private func loadPostsPersonal() {
-       let jsonPayload = [
-        "function": "getPostsPersonal",
-        "userID": "5",
-        "numberOfPosts": "100",
-        "token": "d6ec38a610fc4eda5fc09889976053dc7c3edd1183220ba8d70424c0eb725d00"
-        ] as! Dictionary<String, String>
+        guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
+            else {
+                fatalError("No userID found in UserDefaults!")
+        }
+        
+        let token: String
+        
+        do {
+            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                             account: String(userID),
+                                             accessGroup: KeychainConfiguration.accessGroup)
+            
+            token = try tokenItem.readPassword()
+        } catch {
+            fatalError("Error reading token from Keychain - \(error)")
+        }
+        
+        let jsonPayload = [
+            "function": "getPostsLatest",
+            "userID": String(userID),
+            "numberOfPosts": "100",
+            "token": token
+        ]
         
         callAPI(withJSON: jsonPayload) { (jsonResponse) in
             if let success = jsonResponse["success"] as? Int {
@@ -130,20 +147,22 @@ class PostTableViewController: UITableViewController {
                         let imageURL = URL(string: post["imageURL"] as! String)
                         let tags = post["tags"] as! Array<String>
                         
-//                        DispatchQueue.global().async {
-//                            let data = try? Data(contentsOf: imageURL!)
-//                            DispatchQueue.main.async {
-//                                imageView.image = UIImage(data: data!)
-//                            }
-//                        }
-                        
-                        let imageData = try? Data(contentsOf: imageURL!)
-                        let image = UIImage(data: imageData!)
+                        // This is just a temporary image while the real one is loading asynchronously
+                        let image = UIImage(named: "placeholder_image")
                         
                         guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags) else {
                             fatalError("Unable to instantiate post")
                         }
                         
+                        DispatchQueue.global().async {
+                            let data = try? Data(contentsOf: imageURL!)
+                            
+                            DispatchQueue.main.async {
+                                _post.image = UIImage(data: data!)
+                                self.tableView.reloadData()
+                            }
+                        }
+
                         self.posts += [_post]
                     }
                     

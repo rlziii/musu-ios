@@ -15,6 +15,13 @@
 
 import UIKit
 
+// Keychain Configuration
+// https://www.raywenderlich.com/179924/secure-ios-user-data-keychain-biometrics-face-id-touch-id
+struct KeychainConfiguration {
+    static let serviceName = "Musu"
+    static let accessGroup: String? = nil
+}
+
 class FirstViewController: UIViewController {
 
     //MARK: Properties
@@ -56,6 +63,31 @@ class FirstViewController: UIViewController {
         callAPI(withJSON: jsonPayload) { (jsonResponse) in
             if let success = jsonResponse["success"] as? Int {
                 if (success == 1) {
+                    
+                    print(jsonResponse)
+                    print("----------")
+                    print(jsonResponse["results"] as? [String: Any] as Any)
+                    
+                    guard let jsonResults = jsonResponse["results"] as? [String: Any],
+                          let token = jsonResults["token"] as? String,
+                          let userID = jsonResults["userID"] as? Int
+                    else {
+                        fatalError("Problem with username and/or token")
+                    }
+                    
+                    do {
+                        let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                                             account: String(userID),
+                                                             accessGroup: KeychainConfiguration.accessGroup)
+
+                        try tokenItem.savePassword(token)
+                        
+                        UserDefaults.standard.set(userID, forKey: "userID")
+                        UserDefaults.standard.set(true, forKey: "hasTokenSaved")
+                    } catch {
+                        fatalError("Error updating Keychain - \(error)")
+                    }
+                    
                     self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
                     DispatchQueue.main.async {
                         self.changeLoginStatus(to: (jsonResponse["message"])! as! String)
