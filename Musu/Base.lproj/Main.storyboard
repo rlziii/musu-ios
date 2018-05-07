@@ -68,17 +68,17 @@
                         <outlet property="loginStatusLabel" destination="uDU-va-ruo" id="huJ-hC-8Mo"/>
                         <outlet property="passwordTextField" destination="cre-ki-pBG" id="7yy-Ja-nQY"/>
                         <outlet property="usernameTextField" destination="Ywf-Ma-ArP" id="LqX-Zu-6lG"/>
-                        <segue destination="7mz-cr-SZN" kind="presentation" identifier="LoginToStreamSegue" id="rx7-lS-jcN"/>
+                        <segue destination="yPl-Gw-e4h" kind="presentation" identifier="LoginToStreamSegue" id="rx7-lS-jcN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Post Table View Controller-->
+        <!--Personal-->
         <scene sceneID="ZAF-XS-ZHt">
             <objects>
-                <tableViewController id="7mz-cr-SZN" customClass="PostTableViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7mz-cr-SZN" customClass="PostsPersonalViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="13Q-D9-ogf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,10 +123,135 @@
                             <outlet property="delegate" destination="7mz-cr-SZN" id="igL-sl-s0R"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Personal" id="9qd-wR-GYc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNO-pg-flU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672.8" y="-321.58920539730138"/>
+            <point key="canvasLocation" x="2070" y="-1756"/>
+        </scene>
+        <!--Latest-->
+        <scene sceneID="Hx1-bC-FRj">
+            <objects>
+                <tableViewController id="vbp-nE-rkG" customClass="PostsLatestViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sTa-v3-H9e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="90" id="Kfl-sK-hGu" customClass="PostTableViewCell" customModule="Musu" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kfl-sK-hGu" id="4Rc-2d-hiB">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_image" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-u1-bZv">
+                                            <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE3-OF-8yd">
+                                            <rect key="frame" x="97" y="11" width="262" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quick, brown, fox, jumps, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1p-Ix-DmN">
+                                            <rect key="frame" x="97" y="58" width="262" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyTextLabel" destination="JE3-OF-8yd" id="53b-cL-7O6"/>
+                                    <outlet property="photoImageView" destination="XIJ-u1-bZv" id="fQ8-tJ-rfM"/>
+                                    <outlet property="tagsLabel" destination="r1p-Ix-DmN" id="lA5-hi-iby"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vbp-nE-rkG" id="u88-Bo-AkI"/>
+                            <outlet property="delegate" destination="vbp-nE-rkG" id="3sa-tg-AAG"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Latest" id="cAe-Kd-XEx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="450-ZF-4WU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2070" y="-982"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="9H7-6c-HZE">
+            <objects>
+                <viewController id="2sR-0C-mvi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Po2-G0-qhI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="DCV-gB-Oli"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="MI6-Jx-49q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MuD-oW-RIx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2070" y="534"/>
+        </scene>
+        <!--Groups-->
+        <scene sceneID="r6f-fG-TjF">
+            <objects>
+                <tableViewController id="pXy-9R-0mv" customClass="PostsGroupsViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nc-0K-fHL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="90" id="zar-7U-cnm" customClass="PostTableViewCell" customModule="Musu" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zar-7U-cnm" id="Hys-oO-G19">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_image" translatesAutoresizingMaskIntoConstraints="NO" id="fYi-ii-5e1">
+                                            <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8M-qn-okG">
+                                            <rect key="frame" x="97" y="11" width="262" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quick, brown, fox, jumps, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-Ka-e8q">
+                                            <rect key="frame" x="97" y="58" width="262" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bodyTextLabel" destination="f8M-qn-okG" id="sVX-Rx-SiZ"/>
+                                    <outlet property="photoImageView" destination="fYi-ii-5e1" id="yhb-aS-L5p"/>
+                                    <outlet property="tagsLabel" destination="CVO-Ka-e8q" id="upN-y4-k9K"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pXy-9R-0mv" id="QPZ-Zd-5w7"/>
+                            <outlet property="delegate" destination="pXy-9R-0mv" id="a3M-DA-DTU"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Groups" id="dt4-Wg-VRi"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8Z-mh-KXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2070" y="-231"/>
         </scene>
         <!--Create User-->
         <scene sceneID="wg7-f3-ORb">
@@ -257,6 +382,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="r7N-Jy-Smz">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yPl-Gw-e4h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xQH-xw-Qcm">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7mz-cr-SZN" kind="relationship" relationship="viewControllers" id="RyB-oY-alQ"/>
+                        <segue destination="vbp-nE-rkG" kind="relationship" relationship="viewControllers" id="ELZ-Wi-IIB"/>
+                        <segue destination="pXy-9R-0mv" kind="relationship" relationship="viewControllers" id="RZF-Oz-IPx"/>
+                        <segue destination="2sR-0C-mvi" kind="relationship" relationship="viewControllers" id="LV2-vR-HU5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jR6-pQ-n6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1613.5999999999999" y="-645.42728635682158"/>
         </scene>
     </scenes>
     <resources>

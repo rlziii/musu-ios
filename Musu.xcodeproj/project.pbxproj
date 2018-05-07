@@ -18,6 +18,9 @@
 		B1B5B04C20884FF7001BF2C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */; };
 		B1BCD40C209DDE530061CE59 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */; };
 		B1E6CC17208EDB0C00276697 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6CC16208EDB0C00276697 /* Post.swift */; };
+		B1F154E0209FE4C900E74A7B /* PostsPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */; };
+		B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */; };
+		B1F154E4209FE77000E74A7B /* PostsGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		B1B5B04D20884FF7001BF2C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		B1E6CC16208EDB0C00276697 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPersonalViewController.swift; sourceTree = "<group>"; };
+		B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsLatestViewController.swift; sourceTree = "<group>"; };
+		B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsGroupsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 				B1E6CC16208EDB0C00276697 /* Post.swift */,
 				B13F4781209A5261003C86DE /* PostTableViewCell.swift */,
 				B13F4783209A55B2003C86DE /* PostTableViewController.swift */,
+				B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */,
+				B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */,
+				B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */,
 				B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */,
 				B12CADF5208984660023746D /* connectToAPI.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
@@ -154,12 +163,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12CADF6208984660023746D /* connectToAPI.swift in Sources */,
+				B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */,
 				B1B5B04420884FF5001BF2C7 /* CreateUserViewController.swift in Sources */,
 				B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */,
 				B1BCD40C209DDE530061CE59 /* KeychainPasswordItem.swift in Sources */,
+				B1F154E0209FE4C900E74A7B /* PostsPersonalViewController.swift in Sources */,
 				B1B5B04220884FF5001BF2C7 /* LoginViewController.swift in Sources */,
 				B1E6CC17208EDB0C00276697 /* Post.swift in Sources */,
 				B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */,
+				B1F154E4209FE77000E74A7B /* PostsGroupsViewController.swift in Sources */,
 				B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

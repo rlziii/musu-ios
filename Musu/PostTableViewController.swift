@@ -13,6 +13,8 @@ class PostTableViewController: UITableViewController {
     //MARK: Properties
     
     var posts = [Post]()
+    
+    var  apiFunctionName = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class PostTableViewController: UITableViewController {
         // loadSamplePosts()
         
         // Load JSON data
+        
         loadPostsPersonal()
     }
 
@@ -129,7 +132,7 @@ class PostTableViewController: UITableViewController {
         }
         
         let jsonPayload = [
-            "function": "getPostsLatest",
+            "function": apiFunctionName,
             "userID": String(userID),
             "numberOfPosts": "100",
             "token": token
