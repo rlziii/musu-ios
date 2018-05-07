@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class CreateUserViewController: UIViewController {
     
     //MARK: Properties
 

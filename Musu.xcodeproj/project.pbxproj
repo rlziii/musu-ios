@@ -21,6 +21,7 @@
 		B1F154E0209FE4C900E74A7B /* PostsPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */; };
 		B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */; };
 		B1F154E4209FE77000E74A7B /* PostsGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */; };
+		B1F154E6209FEEB500E74A7B /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E5209FEEB400E74A7B /* PostDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPersonalViewController.swift; sourceTree = "<group>"; };
 		B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsLatestViewController.swift; sourceTree = "<group>"; };
 		B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsGroupsViewController.swift; sourceTree = "<group>"; };
+		B1F154E5209FEEB400E74A7B /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				B1B5B03F20884FF5001BF2C7 /* AppDelegate.swift */,
 				B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */,
 				B1B5B04320884FF5001BF2C7 /* CreateUserViewController.swift */,
+				B1F154E5209FEEB400E74A7B /* PostDetailViewController.swift */,
 				B1E6CC16208EDB0C00276697 /* Post.swift */,
 				B13F4781209A5261003C86DE /* PostTableViewCell.swift */,
 				B13F4783209A55B2003C86DE /* PostTableViewController.swift */,
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12CADF6208984660023746D /* connectToAPI.swift in Sources */,
+				B1F154E6209FEEB500E74A7B /* PostDetailViewController.swift in Sources */,
 				B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */,
 				B1B5B04420884FF5001BF2C7 /* CreateUserViewController.swift in Sources */,
 				B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */,

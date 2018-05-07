@@ -101,15 +101,37 @@ class PostTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "ShowDetail":
+            guard let postDetailViewController = segue.destination as? PostDetailViewController
+                else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedPostCell = sender as? PostTableViewCell
+                else {
+                    fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedPostCell)
+                else {
+                    fatalError("The selected cell is not being displayed by the table.")
+            }
+            
+            let selectedPost = posts[indexPath.row]
+            postDetailViewController.post = selectedPost
+            
+        default:
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
+        }
+        
     }
-    */
 
     //MARK: Private Methods
     

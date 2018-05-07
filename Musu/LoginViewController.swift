@@ -22,7 +22,7 @@ struct KeychainConfiguration {
     static let accessGroup: String? = nil
 }
 
-class FirstViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     //MARK: Properties
     
