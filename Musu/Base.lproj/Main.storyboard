@@ -170,6 +170,7 @@
                                     <outlet property="bodyTextLabel" destination="JE3-OF-8yd" id="53b-cL-7O6"/>
                                     <outlet property="photoImageView" destination="XIJ-u1-bZv" id="fQ8-tJ-rfM"/>
                                     <outlet property="tagsLabel" destination="r1p-Ix-DmN" id="lA5-hi-iby"/>
+                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="e4W-9Y-Y6J"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -240,6 +241,7 @@
                                     <outlet property="bodyTextLabel" destination="f8M-qn-okG" id="sVX-Rx-SiZ"/>
                                     <outlet property="photoImageView" destination="fYi-ii-5e1" id="yhb-aS-L5p"/>
                                     <outlet property="tagsLabel" destination="CVO-Ka-e8q" id="upN-y4-k9K"/>
+                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="Ftu-n4-GKE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -263,25 +265,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageView:9je-zc-olC:image" translatesAutoresizingMaskIntoConstraints="NO" id="9je-zc-olC">
-                                <rect key="frame" x="16" y="174" width="343" height="343"/>
+                                <rect key="frame" x="16" y="117" width="343" height="343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Body Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Tn-z6o">
-                                <rect key="frame" x="16" y="541" width="76" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-iO-29h">
-                                <rect key="frame" x="16" y="635" width="37" height="21"/>
+                                <rect key="frame" x="16" y="468" width="343" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxl-KG-sEL">
-                                <rect key="frame" x="13" y="122" width="79" height="21"/>
+                                <rect key="frame" x="16" y="88" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-iO-29h">
+                                <rect key="frame" x="16" y="635" width="343" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -308,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eC6-65-1Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3972" y="-1366"/>
+            <point key="canvasLocation" x="3972" y="-1366.2561576354681"/>
         </scene>
         <!--Create User-->
         <scene sceneID="wg7-f3-ORb">
@@ -1280,4 +1282,7 @@ rbiwuLUAAAAAAAACAQAAAAAAAABZAAAAAAAAAAAAAAAAAAC4tw
         <image name="placeholder_image" width="100" height="100"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ftu-n4-GKE"/>
+    </inferredMetricsTieBreakers>
 </document>
