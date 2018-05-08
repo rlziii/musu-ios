@@ -30,7 +30,7 @@ class PostTableViewController: UITableViewController {
         
         // Load JSON data
         
-        loadPostsPersonal()
+        loadPosts()
     }
 
     override func didReceiveMemoryWarning() {
@@ -140,7 +140,7 @@ class PostTableViewController: UITableViewController {
 
     //MARK: Private Methods
     
-    private func loadPostsPersonal() {
+    private func loadPosts() {
         guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
             else {
                 fatalError("No userID found in UserDefaults!")
