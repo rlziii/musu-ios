@@ -109,9 +109,14 @@ class PostTableViewController: UITableViewController {
         
         switch(segue.identifier ?? "") {
         case "ShowDetail":
-            guard let postDetailViewController = segue.destination as? PostDetailViewController
+            guard let navigationViewController = segue.destination as? UINavigationController
                 else {
-                    fatalError("Unexpected destination: \(segue.destination)")
+                    fatalError("Unexpected segue destination: \(segue.destination)")
+            }
+            
+            guard let postDetailViewController = navigationViewController.topViewController as? PostDetailViewController
+                else {
+                    fatalError("Unexpected top view controller: \(String(describing: navigationViewController.topViewController))")
             }
             
             guard let selectedPostCell = sender as? PostTableViewCell
