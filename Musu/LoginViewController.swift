@@ -32,7 +32,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        attemptAutoLogin()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +43,57 @@ class LoginViewController: UIViewController {
     
     func changeLoginStatus(to: String) {
         loginStatusLabel.text = to
+    }
+    
+    // Attempt to (silently) login via a saved userID and token
+    func attemptAutoLogin() {
+        // If the hasTokenSaved key is set...
+        if let hasTokenSaved = UserDefaults.standard.object(forKey: "hasTokenSaved") as? Bool {
+            // And the hasTokenSaved key is set to true...
+            if hasTokenSaved {
+                // Get the userID
+                guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
+                    else {
+                        fatalError("No userID found in UserDefaults!")
+                }
+                
+                // Get the token
+                let token: String
+                do {
+                    let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                                         account: String(userID),
+                                                         accessGroup: KeychainConfiguration.accessGroup)
+                    
+                    token = try tokenItem.readPassword()
+                } catch {
+                    fatalError("Error reading token from Keychain - \(error)")
+                }
+                
+                
+                // Build the JSON payload
+                let jsonPayload = [
+                    "function": "loginWithToken",
+                    "userID": String(userID),
+                    "token": token,
+                    ]
+                
+                // Call the API and send the JSON payload
+                callAPI(withJSON: jsonPayload) { (jsonResponse) in
+                    if let success = jsonResponse["success"] as? Int {
+                        if (success == 1) {
+                            self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
+                        } else {
+                            // Silently fail
+                            return
+                        }
+                    }
+                }
+            }
+        } else {
+            // Silently fail
+            print("Auto login attempt failed")
+            return
+        }
     }
     
     //MARK: Actions

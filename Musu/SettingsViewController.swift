@@ -67,7 +67,6 @@ class SettingsViewController: UIViewController {
             return
         }
         
-        
         guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
             else {
                 fatalError("No userID found in UserDefaults!")
