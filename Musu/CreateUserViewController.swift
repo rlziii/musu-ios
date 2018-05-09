@@ -44,14 +44,27 @@ class CreateUserViewController: UIViewController {
         self.passwordTextField.resignFirstResponder()
         self.passwordVerifyTextField.resignFirstResponder()
         self.emailAddressTextField.resignFirstResponder()
-        
-        // TODO: PASSWORD VERIFY
-        
+
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text
         let username = usernameTextField.text
         let password = passwordTextField.text
+        let passwordVerify = passwordVerifyTextField.text
         let emailAddress = emailAddressTextField.text
+        
+        // Verify that the passwords match
+        if password != passwordVerify {
+            changeCreateUserStatus(to: "Passwords do not match.")
+            
+            return
+        }
+        
+        // Ensure that all fields are filled out
+        if firstName == "" || lastName == "" || username == "" || password == "" || emailAddress == "" {
+            changeCreateUserStatus(to: "Not all fields are filled out.")
+            
+            return
+        }
         
         let jsonPayload = [
             "function": "createUser",
