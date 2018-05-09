@@ -47,10 +47,14 @@ class LoginViewController: UIViewController {
     
     // Attempt to (silently) login via a saved userID and token
     func attemptAutoLogin() {
+        print("Attempting auto login")
+        
         // If the hasTokenSaved key is set...
         if let hasTokenSaved = UserDefaults.standard.object(forKey: "hasTokenSaved") as? Bool {
             // And the hasTokenSaved key is set to true...
             if hasTokenSaved {
+                print("hasTokenSaved UserDefaults key found as true")
+                
                 // Get the userID
                 guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
                     else {
@@ -81,17 +85,21 @@ class LoginViewController: UIViewController {
                 callAPI(withJSON: jsonPayload) { (jsonResponse) in
                     if let success = jsonResponse["success"] as? Int {
                         if (success == 1) {
+                            print ("Auto login successful!")
                             self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
                         } else {
                             // Silently fail
+                            print("Auto login failed after API call: \(jsonResponse["error"] as! String)")
                             return
                         }
                     }
                 }
+            } else {
+                print("hasTokenSaved UserDefaults key found as false")
             }
         } else {
             // Silently fail
-            print("Auto login attempt failed")
+            print("hasTokenSaved UserDefaults key not found")
             return
         }
     }
