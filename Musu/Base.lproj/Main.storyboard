@@ -459,6 +459,9 @@
                                 <rect key="frame" x="146" y="748" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit Post"/>
+                                <connections>
+                                    <action selector="submitPost:" destination="54O-OA-KJ7" eventType="touchUpInside" id="u9s-xs-2sY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

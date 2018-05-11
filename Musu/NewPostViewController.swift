@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cloudinary
 
 class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -61,6 +62,8 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // MARK: Actions
+    
+    // TODO: Allow images from camera
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         // Hide keyboard
         textBodyTextView.resignFirstResponder()
@@ -76,6 +79,73 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    // TODO: Allow images from camera
+    @IBAction func submitPost(_ sender: UIButton) {
+        let config = CLDConfiguration(cloudName: "cop4331g2", secure: true)
+        let cloudinary = CLDCloudinary(configuration: config)
+        
+        guard let image = photoImageView.image
+            else {
+                fatalError("Could not unwrap photoImageView.image optional")
+        }
+        
+        guard let imageData = UIImageJPEGRepresentation(image, 0.8)
+            else {
+                fatalError("Could not get data from image")
+        }
+        
+        print("About to upload image...")
+        cloudinary.createUploader().upload(data: imageData, uploadPreset: "musu_preset") {result, error in
+            if let error = error {
+                print("Error creating post: \(error.localizedDescription)")
+            }
+            
+            if let result = result {
+                if let imageURL = result.url {
+                    print(imageURL)
+                    
+                    // Get the userID
+                    guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
+                        else {
+                            fatalError("No userID found in UserDefaults!")
+                    }
+                    
+                    // Get the token
+                    let token: String
+                    do {
+                        let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                                             account: String(userID),
+                                                             accessGroup: KeychainConfiguration.accessGroup)
+                        
+                        token = try tokenItem.readPassword()
+                    } catch {
+                        fatalError("Error reading token from Keychain - \(error)")
+                    }
+                    
+                    let bodyText = self.textBodyTextView.text
+                    let tags = self.tagsTextView.text
+                    
+                    let jsonPayload = [
+                        "function": "createPost",
+                        "userID": String(userID),
+                        "token": token,
+                        "imageURL": imageURL,
+                        "bodyText": bodyText,
+                        "tags": tags
+                    ] as! Dictionary<String, String>
+                    
+                    callAPI(withJSON: jsonPayload) { (jsonResponse) in
+                        if let success = jsonResponse["success"] as? Int {
+                            if (success == 1) {
+                                print("New post was created.")
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                print("New post was NOT created.")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }

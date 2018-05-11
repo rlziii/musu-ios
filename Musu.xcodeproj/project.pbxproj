@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2967DBD8A1B0AF6B367A4559 /* Pods_Musu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B936453D7BEAD77C34E2F975 /* Pods_Musu.framework */; };
 		B12CADF6208984660023746D /* connectToAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CADF5208984660023746D /* connectToAPI.swift */; };
 		B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4781209A5261003C86DE /* PostTableViewCell.swift */; };
 		B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4783209A55B2003C86DE /* PostTableViewController.swift */; };
@@ -40,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		44818761FC8D43393BC1F807 /* Pods-Musu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Musu/Pods-Musu.debug.xcconfig"; sourceTree = "<group>"; };
+		8EDDF5F863B96F5274AB3C8B /* Pods-Musu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Musu/Pods-Musu.release.xcconfig"; sourceTree = "<group>"; };
 		B12CADF5208984660023746D /* connectToAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectToAPI.swift; sourceTree = "<group>"; };
 		B13F4781209A5261003C86DE /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		B13F4783209A55B2003C86DE /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsGroupsViewController.swift; sourceTree = "<group>"; };
 		B1F154E5209FEEB400E74A7B /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		B1F9187C20A292D3006E6A3E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B936453D7BEAD77C34E2F975 /* Pods_Musu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Musu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,17 +70,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2967DBD8A1B0AF6B367A4559 /* Pods_Musu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3148614383B79D5009A3A616 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44818761FC8D43393BC1F807 /* Pods-Musu.debug.xcconfig */,
+				8EDDF5F863B96F5274AB3C8B /* Pods-Musu.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B1B5B03320884FF5001BF2C7 = {
 			isa = PBXGroup;
 			children = (
 				B1B5B03E20884FF5001BF2C7 /* Musu */,
 				B1B5B03D20884FF5001BF2C7 /* Products */,
+				3148614383B79D5009A3A616 /* Pods */,
+				F728E4454AB324314AED6503 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +129,14 @@
 			path = Musu;
 			sourceTree = "<group>";
 		};
+		F728E4454AB324314AED6503 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B936453D7BEAD77C34E2F975 /* Pods_Musu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,10 +144,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1B5B05020884FF7001BF2C7 /* Build configuration list for PBXNativeTarget "Musu" */;
 			buildPhases = (
+				D79ED588C06CA5A4EF94EA73 /* [CP] Check Pods Manifest.lock */,
 				B1B5B03820884FF5001BF2C7 /* Sources */,
 				B1B5B03920884FF5001BF2C7 /* Frameworks */,
 				B1B5B03A20884FF5001BF2C7 /* Resources */,
 				B1803A4620A3EF5F00830BA0 /* Embed Frameworks */,
+				B5EE3AF020C2F3973DC3781A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,6 +205,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B5EE3AF020C2F3973DC3781A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Musu/Pods-Musu-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Musu/Pods-Musu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D79ED588C06CA5A4EF94EA73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Musu-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B1B5B03820884FF5001BF2C7 /* Sources */ = {
@@ -340,8 +407,9 @@
 		};
 		B1B5B05120884FF7001BF2C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44818761FC8D43393BC1F807 /* Pods-Musu.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78CW4BPHYV;
@@ -359,8 +427,9 @@
 		};
 		B1B5B05220884FF7001BF2C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EDDF5F863B96F5274AB3C8B /* Pods-Musu.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78CW4BPHYV;
