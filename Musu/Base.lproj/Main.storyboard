@@ -83,9 +83,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9LA-NT-qgI">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="New Post"/>
+                            <connections>
+                                <segue destination="347-jx-h9d" kind="show" identifier="ShowNewPost" id="ifA-lV-oPH"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="90" id="tU6-Tj-LvA" customClass="PostTableViewCell" customModule="Musu" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tU6-Tj-LvA" id="400-Gc-Umg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89.666666666666671"/>
@@ -408,6 +416,71 @@
             </objects>
             <point key="canvasLocation" x="3991" y="-321"/>
         </scene>
+        <!--New Post View Controller-->
+        <scene sceneID="f8d-SR-wRA">
+            <objects>
+                <viewController id="54O-OA-KJ7" customClass="NewPostViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ypi-FX-xWn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="no_photo_selected" translatesAutoresizingMaskIntoConstraints="NO" id="NGn-VG-ns1">
+                                <rect key="frame" x="16" y="88" width="343" height="343"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Uca-Lf-gEn" appends="YES" id="Cj2-Cp-cSM"/>
+                                </connections>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JAz-hy-z4W">
+                                <rect key="frame" x="16" y="439" width="343" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Text body.
+.
+.
+.
+.
+.
+.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rg9-3S-JKm">
+                                <rect key="frame" x="16" y="650" width="343" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Tags.
+.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSp-Y3-Qd4">
+                                <rect key="frame" x="146" y="748" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit Post"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zl8-Jp-fbp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6n6-VJ-0W3"/>
+                    <connections>
+                        <outlet property="photoImageView" destination="NGn-VG-ns1" id="QGM-rS-xan"/>
+                        <outlet property="submitPostButton" destination="TSp-Y3-Qd4" id="QDv-LL-of2"/>
+                        <outlet property="tagsTextView" destination="rg9-3S-JKm" id="exo-T4-xxK"/>
+                        <outlet property="textBodyTextView" destination="JAz-hy-z4W" id="rek-8O-tSE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOc-Iq-kHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Uca-Lf-gEn">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="54O-OA-KJ7" id="PCI-WA-liR"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3990" y="-1026"/>
+        </scene>
         <!--Create User-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -577,13 +650,32 @@
             </objects>
             <point key="canvasLocation" x="3201" y="-321"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bMn-Ui-v23">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="347-jx-h9d" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wzu-Tp-EuG">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="54O-OA-KJ7" kind="relationship" relationship="rootViewController" id="Xdy-a1-0JR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAn-Za-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3308" y="-1026"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="no_photo_selected" width="360" height="360"/>
         <image name="placeholder_image" width="100" height="100"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ogh-2Y-Fnt"/>
+        <segue reference="e4W-9Y-Y6J"/>
     </inferredMetricsTieBreakers>
 </document>

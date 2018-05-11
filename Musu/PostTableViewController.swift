@@ -131,7 +131,8 @@ class PostTableViewController: UITableViewController {
             
             let selectedPost = posts[indexPath.row]
             postDetailViewController.post = selectedPost
-            
+        case "ShowNewPost":
+            print("Show new post")
         default:
             fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
