@@ -106,22 +106,59 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         dismiss(animated: true, completion: nil)
     }
     
+    func selectImageFromPhotoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken
+            imagePickerController.sourceType = .photoLibrary
+            
+            // Make sure NewPostViewController is notified when the user picks an image
+            imagePickerController.delegate = self
+            
+            present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    func selectImageFromCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken
+            imagePickerController.sourceType = .camera
+            
+            // Make sure NewPostViewController is notified when the user picks an image
+            imagePickerController.delegate = self
+            
+            present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: Actions
     
     // TODO: Allow images from camera
-    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
+    @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
         // Hide keyboard
         textBodyTextView.resignFirstResponder()
         tagsTextView.resignFirstResponder()
         
-        let imagePickerController = UIImagePickerController()
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        // Only allow photos to be picked, not taken
-        imagePickerController.sourceType = .photoLibrary
+        let photoLibraryButton = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+            self.selectImageFromPhotoLibrary()
+        })
         
-        // Make sure NewPostViewController is notified when the user picks an image
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
+        let cameraButton = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.selectImageFromCamera()
+        })
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(photoLibraryButton)
+        alertController.addAction(cameraButton)
+        alertController.addAction(cancelButton)
+        
+        self.navigationController!.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func submitPost(_ sender: UIButton) {
