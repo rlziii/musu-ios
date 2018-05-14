@@ -22,14 +22,51 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         super.viewDidLoad()
 
         // Handle the text fields' user input through delegate callbacks.
-//        textBodyTextView.delegate = self
-//        tagsTextView.delegate = self
+        textBodyTextView.delegate = self
+        tagsTextView.delegate = self
+        
+        // Add observers in order to move the view when keyboards activate
+        // https://stackoverflow.com/a/31124676
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    // TODO: This doesn't seem to work; perhaps only works with TextFields and not TextViews?
+    // TODO: This seems very buggy; research a better method...
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    // TODO: This seems very buggy; research a better method...
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
     // This will close all keyboards when touching outside of the keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+        textBodyTextView.resignFirstResponder()
+        tagsTextView.resignFirstResponder()
+
+        // The method below will potentially close all keyboards possible
+        // self.view.endEditing(true)
+    }
+    
+    // Close the keyboard when the "Done" button is pressed.
+    // https://stackoverflow.com/a/31601777
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -136,6 +173,15 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
                 }
             }
         }
+    }
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
     
 }
