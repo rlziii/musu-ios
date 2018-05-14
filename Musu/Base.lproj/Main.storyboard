@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -123,7 +124,10 @@
                                     <outlet property="bodyTextLabel" destination="Poi-nl-LAC" id="5ax-yu-qK5"/>
                                     <outlet property="photoImageView" destination="okl-iV-nZn" id="rti-d9-pU1"/>
                                     <outlet property="tagsLabel" destination="cQa-Vg-8lH" id="K4U-rx-acX"/>
-                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="ogh-2Y-Fnt"/>
+                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="ogh-2Y-Fnt">
+                                        <segue key="commit" inheritsFrom="parent" id="qQg-Tt-mS1"/>
+                                        <segue key="preview" inheritsFrom="commit" id="szZ-Qq-nk1"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -178,7 +182,10 @@
                                     <outlet property="bodyTextLabel" destination="JE3-OF-8yd" id="53b-cL-7O6"/>
                                     <outlet property="photoImageView" destination="XIJ-u1-bZv" id="fQ8-tJ-rfM"/>
                                     <outlet property="tagsLabel" destination="r1p-Ix-DmN" id="lA5-hi-iby"/>
-                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="e4W-9Y-Y6J"/>
+                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="e4W-9Y-Y6J">
+                                        <segue key="commit" inheritsFrom="parent" id="WuJ-jy-MOB"/>
+                                        <segue key="preview" inheritsFrom="commit" id="HpA-vN-VqU"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -345,7 +352,10 @@
                                     <outlet property="bodyTextLabel" destination="f8M-qn-okG" id="sVX-Rx-SiZ"/>
                                     <outlet property="photoImageView" destination="fYi-ii-5e1" id="yhb-aS-L5p"/>
                                     <outlet property="tagsLabel" destination="CVO-Ka-e8q" id="upN-y4-k9K"/>
-                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="Ftu-n4-GKE"/>
+                                    <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="Ftu-n4-GKE">
+                                        <segue key="commit" inheritsFrom="parent" id="0N5-5o-8TG"/>
+                                        <segue key="preview" inheritsFrom="commit" id="3PS-uS-Suj"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -679,6 +689,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e4W-9Y-Y6J"/>
+        <segue reference="Ftu-n4-GKE"/>
     </inferredMetricsTieBreakers>
 </document>
