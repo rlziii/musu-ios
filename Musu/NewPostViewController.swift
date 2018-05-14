@@ -9,7 +9,7 @@
 import UIKit
 import Cloudinary
 
-class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
     
@@ -21,7 +21,15 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Handle the text fields' user input through delegate callbacks.
+//        textBodyTextView.delegate = self
+//        tagsTextView.delegate = self
+    }
+    
+    // TODO: This doesn't seem to work; perhaps only works with TextFields and not TextViews?
+    // This will close all keyboards when touching outside of the keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,31 +111,13 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
                 if let imageURL = result.url {
                     print(imageURL)
                     
-                    // Get the userID
-                    guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
-                        else {
-                            fatalError("No userID found in UserDefaults!")
-                    }
-                    
-                    // Get the token
-                    let token: String
-                    do {
-                        let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                             account: String(userID),
-                                                             accessGroup: KeychainConfiguration.accessGroup)
-                        
-                        token = try tokenItem.readPassword()
-                    } catch {
-                        fatalError("Error reading token from Keychain - \(error)")
-                    }
-                    
                     let bodyText = self.textBodyTextView.text
                     let tags = self.tagsTextView.text
                     
                     let jsonPayload = [
                         "function": "createPost",
-                        "userID": String(userID),
-                        "token": token,
+                        "userID": getUserID(),
+                        "token": getToken(),
                         "imageURL": imageURL,
                         "bodyText": bodyText,
                         "tags": tags

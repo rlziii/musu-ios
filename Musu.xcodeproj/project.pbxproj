@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2967DBD8A1B0AF6B367A4559 /* Pods_Musu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B936453D7BEAD77C34E2F975 /* Pods_Musu.framework */; };
-		B12CADF6208984660023746D /* connectToAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CADF5208984660023746D /* connectToAPI.swift */; };
+		B12CADF6208984660023746D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CADF5208984660023746D /* API.swift */; };
 		B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4781209A5261003C86DE /* PostTableViewCell.swift */; };
 		B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F4783209A55B2003C86DE /* PostTableViewController.swift */; };
 		B1803A3520A3CF8000830BA0 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1803A3420A3CF8000830BA0 /* NewPostViewController.swift */; };
+		B193E09720A90E52007515D4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B193E09620A90E52007515D4 /* UserInfo.swift */; };
 		B1B5B04020884FF5001BF2C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B03F20884FF5001BF2C7 /* AppDelegate.swift */; };
 		B1B5B04220884FF5001BF2C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */; };
 		B1B5B04420884FF5001BF2C7 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5B04320884FF5001BF2C7 /* CreateUserViewController.swift */; };
@@ -43,10 +44,11 @@
 /* Begin PBXFileReference section */
 		44818761FC8D43393BC1F807 /* Pods-Musu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Musu/Pods-Musu.debug.xcconfig"; sourceTree = "<group>"; };
 		8EDDF5F863B96F5274AB3C8B /* Pods-Musu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Musu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Musu/Pods-Musu.release.xcconfig"; sourceTree = "<group>"; };
-		B12CADF5208984660023746D /* connectToAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = connectToAPI.swift; sourceTree = "<group>"; };
+		B12CADF5208984660023746D /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B13F4781209A5261003C86DE /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		B13F4783209A55B2003C86DE /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		B1803A3420A3CF8000830BA0 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		B193E09620A90E52007515D4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		B1B5B03C20884FF5001BF2C7 /* Musu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B5B03F20884FF5001BF2C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1B5B04120884FF5001BF2C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 				B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */,
 				B1803A3420A3CF8000830BA0 /* NewPostViewController.swift */,
 				B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */,
-				B12CADF5208984660023746D /* connectToAPI.swift */,
+				B12CADF5208984660023746D /* API.swift */,
+				B193E09620A90E52007515D4 /* UserInfo.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
 				B1B5B04820884FF7001BF2C7 /* Assets.xcassets */,
 				B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */,
@@ -252,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B12CADF6208984660023746D /* connectToAPI.swift in Sources */,
+				B12CADF6208984660023746D /* API.swift in Sources */,
 				B1F154E6209FEEB500E74A7B /* PostDetailViewController.swift in Sources */,
 				B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */,
 				B1803A3520A3CF8000830BA0 /* NewPostViewController.swift in Sources */,
@@ -265,6 +268,7 @@
 				B13F4784209A55B2003C86DE /* PostTableViewController.swift in Sources */,
 				B1F9187D20A292D3006E6A3E /* SettingsViewController.swift in Sources */,
 				B1F154E4209FE77000E74A7B /* PostsGroupsViewController.swift in Sources */,
+				B193E09720A90E52007515D4 /* UserInfo.swift in Sources */,
 				B13F4782209A5261003C86DE /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

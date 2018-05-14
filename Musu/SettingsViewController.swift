@@ -67,27 +67,10 @@ class SettingsViewController: UIViewController {
             return
         }
         
-        guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
-            else {
-                fatalError("No userID found in UserDefaults!")
-        }
-        
-        let token: String
-        
-        do {
-            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                 account: String(userID),
-                                                 accessGroup: KeychainConfiguration.accessGroup)
-            
-            token = try tokenItem.readPassword()
-        } catch {
-            fatalError("Error reading token from Keychain - \(error)")
-        }
-        
         let jsonPayload = [
             "function": "updateUser",
-            "userID": String(userID),
-            "token": token,
+            "userID": getUserID(),
+            "token": getToken(),
             "firstName": firstName,
             "lastName": lastName,
             "username": username,

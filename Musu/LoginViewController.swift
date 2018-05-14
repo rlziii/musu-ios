@@ -55,30 +55,11 @@ class LoginViewController: UIViewController {
             if hasTokenSaved {
                 print("hasTokenSaved UserDefaults key found as true")
                 
-                // Get the userID
-                guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
-                    else {
-                        fatalError("No userID found in UserDefaults!")
-                }
-                
-                // Get the token
-                let token: String
-                do {
-                    let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                         account: String(userID),
-                                                         accessGroup: KeychainConfiguration.accessGroup)
-                    
-                    token = try tokenItem.readPassword()
-                } catch {
-                    fatalError("Error reading token from Keychain - \(error)")
-                }
-                
-                
                 // Build the JSON payload
                 let jsonPayload = [
                     "function": "loginWithToken",
-                    "userID": String(userID),
-                    "token": token,
+                    "userID": getUserID(),
+                    "token": getToken(),
                     ]
                 
                 // Call the API and send the JSON payload
