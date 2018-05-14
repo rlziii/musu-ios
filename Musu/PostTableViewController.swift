@@ -142,28 +142,11 @@ class PostTableViewController: UITableViewController {
     //MARK: Private Methods
     
     private func loadPosts() {
-        guard let userID = UserDefaults.standard.value(forKey: "userID") as? Int
-            else {
-                fatalError("No userID found in UserDefaults!")
-        }
-        
-        let token: String
-        
-        do {
-            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                             account: String(userID),
-                                             accessGroup: KeychainConfiguration.accessGroup)
-            
-            token = try tokenItem.readPassword()
-        } catch {
-            fatalError("Error reading token from Keychain - \(error)")
-        }
-        
         let jsonPayload = [
             "function": apiFunctionName,
-            "userID": String(userID),
+            "userID": getUserID(),
             "numberOfPosts": "100",
-            "token": token
+            "token": getToken()
         ]
         
         callAPI(withJSON: jsonPayload) { (jsonResponse) in
