@@ -104,24 +104,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Poi-nl-LAC">
-                                            <rect key="frame" x="97" y="11" width="262" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quick, brown, fox, jumps, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQa-Vg-8lH">
-                                            <rect key="frame" x="97" y="58" width="262" height="21"/>
+                                            <rect key="frame" x="97" y="58" width="240" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Poi-nl-LAC">
+                                            <rect key="frame" x="97" y="11" width="240" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbt-Y1-62w">
+                                            <rect key="frame" x="314" y="29" width="45" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Like"/>
+                                            <connections>
+                                                <action selector="likeOrUnlike:" destination="tU6-Tj-LvA" eventType="touchUpInside" id="YJx-zK-r5e"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="Poi-nl-LAC" id="5ax-yu-qK5"/>
+                                    <outlet property="likeButton" destination="Xbt-Y1-62w" id="fBU-8R-5Wx"/>
                                     <outlet property="photoImageView" destination="okl-iV-nZn" id="rti-d9-pU1"/>
                                     <outlet property="tagsLabel" destination="cQa-Vg-8lH" id="K4U-rx-acX"/>
                                     <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="ogh-2Y-Fnt">
@@ -140,7 +149,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNO-pg-flU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2393" y="-1025"/>
+            <point key="canvasLocation" x="2392.8000000000002" y="-1025.615763546798"/>
         </scene>
         <!--Latest-->
         <scene sceneID="Hx1-bC-FRj">
@@ -163,23 +172,32 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JE3-OF-8yd">
-                                            <rect key="frame" x="97" y="11" width="262" height="21"/>
+                                            <rect key="frame" x="97" y="11" width="240" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quick, brown, fox, jumps, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1p-Ix-DmN">
-                                            <rect key="frame" x="97" y="58" width="262" height="21"/>
+                                            <rect key="frame" x="97" y="58" width="240" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5N-S3-SOe">
+                                            <rect key="frame" x="306" y="29" width="45" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Like"/>
+                                            <connections>
+                                                <action selector="likeOrUnlike:" destination="Kfl-sK-hGu" eventType="touchUpInside" id="D25-uB-Yfm"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="JE3-OF-8yd" id="53b-cL-7O6"/>
+                                    <outlet property="likeButton" destination="k5N-S3-SOe" id="HkR-Dz-eLE"/>
                                     <outlet property="photoImageView" destination="XIJ-u1-bZv" id="fQ8-tJ-rfM"/>
                                     <outlet property="tagsLabel" destination="r1p-Ix-DmN" id="lA5-hi-iby"/>
                                     <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="e4W-9Y-Y6J">
@@ -333,23 +351,32 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is the post's body text." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8M-qn-okG">
-                                            <rect key="frame" x="97" y="11" width="262" height="21"/>
+                                            <rect key="frame" x="97" y="11" width="240" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quick, brown, fox, jumps, ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-Ka-e8q">
-                                            <rect key="frame" x="97" y="58" width="262" height="21"/>
+                                            <rect key="frame" x="97" y="58" width="240" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYB-ig-B04">
+                                            <rect key="frame" x="306" y="29" width="45" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Like"/>
+                                            <connections>
+                                                <action selector="likeOrUnlike:" destination="zar-7U-cnm" eventType="touchUpInside" id="4Zj-D8-w0g"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="f8M-qn-okG" id="sVX-Rx-SiZ"/>
+                                    <outlet property="likeButton" destination="KYB-ig-B04" id="j7m-Lt-AIA"/>
                                     <outlet property="photoImageView" destination="fYi-ii-5e1" id="yhb-aS-L5p"/>
                                     <outlet property="tagsLabel" destination="CVO-Ka-e8q" id="upN-y4-k9K"/>
                                     <segue destination="Lnm-2U-Ueu" kind="show" identifier="ShowDetail" id="Ftu-n4-GKE">

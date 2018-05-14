@@ -25,11 +25,7 @@ class PostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        // Load sample data
-        // loadSamplePosts()
-        
         // Load JSON data
-        
         loadPosts()
     }
 
@@ -59,10 +55,18 @@ class PostTableViewController: UITableViewController {
         // Fetches the appropriate post for the data source layout.
         let post = posts[indexPath.row]
         
+        cell.likeButton.tag = post.postID
+        
         cell.bodyTextLabel.text = post.bodyText
         cell.photoImageView.image = post.image
         cell.tagsLabel.text = post.tagsToString()
-
+        
+        if post.isLiked {
+            cell.likeButton.setTitle("Unlike", for: .normal)
+        } else {
+            cell.likeButton.setTitle("Like", for: .normal)
+        }
+        
         return cell
     }
 
@@ -160,11 +164,12 @@ class PostTableViewController: UITableViewController {
                         let userID = post["userID"] as! Int
                         let imageURL = URL(string: post["imageURL"] as! String)
                         let tags = post["tags"] as! Array<String>
+                        let isLiked = post["isLiked"] as! Bool
                         
                         // This is just a temporary image while the real one is loading asynchronously
                         let image = UIImage(named: "placeholder_image")
                         
-                        guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags) else {
+                        guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags, isLiked: isLiked) else {
                             fatalError("Unable to instantiate post")
                         }
                         
@@ -189,25 +194,5 @@ class PostTableViewController: UITableViewController {
                 }
             }
         }
-    }
-    
-    private func loadSamplePosts() {
-        let image1 = UIImage(named: "placeholder_image")
-        let image2 = UIImage(named: "placeholder_image")
-        let image3 = UIImage(named: "placeholder_image")
-        
-        guard let post1 = Post(username: "TEST_USERNAME", bodyText: "TEST_BODYTEXT", postID: 1, userID: 1, image: image1, tags: ["TAG1", "TAG2"]) else {
-            fatalError("Unable to instantiate post1")
-        }
-        
-        guard let post2 = Post(username: "TEST_USERNAME", bodyText: "TEST_BODYTEXT", postID: 1, userID: 1, image: image2, tags: ["TAG1", "TAG2"]) else {
-            fatalError("Unable to instantiate post1")
-        }
-        
-        guard let post3 = Post(username: "TEST_USERNAME", bodyText: "TEST_BODYTEXT", postID: 1, userID: 1, image: image3, tags: ["TAG1", "TAG2"]) else {
-            fatalError("Unable to instantiate post1")
-        }
-        
-        posts += [post1, post2, post3]
     }
 }

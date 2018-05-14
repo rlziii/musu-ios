@@ -18,14 +18,16 @@ class Post {
     var userID: Int
     var image: UIImage?
     var tags: Array<String>
+    var isLiked: Bool
 
-    init?(username: String, bodyText: String, postID: Int, userID: Int, image: UIImage?, tags: Array<String>) {
+    init?(username: String, bodyText: String, postID: Int, userID: Int, image: UIImage?, tags: Array<String>, isLiked: Bool) {
         self.username = username
         self.bodyText = bodyText
         self.postID = postID
         self.userID = userID
         self.image = image
         self.tags = tags
+        self.isLiked = isLiked
     }
     
     func tagsToString() -> String {
