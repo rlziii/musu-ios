@@ -42,11 +42,13 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
     
     // TODO: This seems very buggy; research a better method...
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+        
+        self.view.frame.origin.y = 0
     }
     
     // This will close all keyboards when touching outside of the keyboard
@@ -136,7 +138,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
     
     // MARK: Actions
     
-    // TODO: Allow images from camera
+    // http://swiftdeveloperblog.com/code-examples/actionsheet-example-in-swift/
     @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
         // Hide keyboard
         textBodyTextView.resignFirstResponder()
