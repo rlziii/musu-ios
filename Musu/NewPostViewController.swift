@@ -11,6 +11,9 @@ import Cloudinary
 
 class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // This will store the URL for an image after being uploaded to Cloudinary
+    var imageURL = ""
+    
     // MARK: Properties
     
     @IBOutlet weak var photoImageView: UIImageView!
@@ -139,6 +142,51 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
     
     // MARK: Actions
     
+    @IBAction func suggestTags(_ sender: UIButton) {
+        let group = DispatchGroup()
+        
+        if imageURL == "" {
+            uploadImage(group)
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+            print("After nofity...")
+            
+            if self.imageURL == "" {
+                fatalError("Could not get imageURL after uploadImage()")
+            }
+            
+            guard let bodyText = self.textBodyTextView.text
+                else {
+                    fatalError("Could not get value for bodyText.")
+            }
+            
+            let jsonPayload = [
+                "function": "suggestTags",
+                "imageURL": self.imageURL,
+                "bodyText": bodyText,
+            ]
+            
+            // NOTES TO SELF
+            // This shit don't work
+            // Find out how to get tags back from the server
+            
+            callAPI(withJSON: jsonPayload) { (jsonResponse) in
+                if let success = jsonResponse["success"] as? Int {
+                    if (success == 1) {
+                        if let tags = jsonResponse["results"] as? Array<String> {
+                            DispatchQueue.main.async {
+                                self.tagsTextView.text = tags.joined(separator: ", ")
+                            }
+                        }
+                    } else {
+                        print("Suggest tags failed.")
+                    }
+                }
+            }
+        }
+    }
+    
     // http://swiftdeveloperblog.com/code-examples/actionsheet-example-in-swift/
     @IBAction func selectImage(_ sender: UITapGestureRecognizer) {
         // Hide keyboard
@@ -164,7 +212,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         self.navigationController!.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func submitPost(_ sender: UIButton) {
+    func uploadImage(_ group: DispatchGroup) {
+        group.enter()
+        
         let config = CLDConfiguration(cloudName: "cop4331g2", secure: true)
         let cloudinary = CLDCloudinary(configuration: config)
         
@@ -179,41 +229,62 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         }
         
         print("About to upload image...")
-        cloudinary.createUploader().upload(data: imageData, uploadPreset: "musu_preset") {result, error in
-            if let error = error {
-                print("Error creating post: \(error.localizedDescription)")
+        
+        DispatchQueue.global(qos: .default).async {
+            cloudinary.createUploader().upload(data: imageData, uploadPreset: "musu_preset") { result, error in
+                if let error = error {
+                    print("Error creating post: \(error.localizedDescription)")
+                }
+                
+                if let result = result {
+                    if let url = result.url {
+                        print(url)
+                        self.imageURL = url
+                    }
+                }
+                
+                group.leave()
+            }
+        }
+    }
+    
+    @IBAction func submitPost(_ sender: UIButton) {
+        let group = DispatchGroup()
+        
+        if imageURL == "" {
+            uploadImage(group)
+        }
+        
+        group.notify(queue: DispatchQueue.main) {
+        
+            if self.imageURL == "" {
+                fatalError("Could not get imageURL after uploadImage()")
             }
             
-            if let result = result {
-                if let imageURL = result.url {
-                    print(imageURL)
-                    
-                    guard let bodyText = self.textBodyTextView.text
-                        else {
-                            fatalError("Could not get value for bodyText.")
-                    }
-                    
-                    // Create an array out of the tags string...
-                    let tags = self.tagsTextView.text.split(separator: ",")
-                    
-                    let jsonPayload = [
-                        "function": "createPost",
-                        "userID": getUserID(),
-                        "token": getToken(),
-                        "imageURL": imageURL,
-                        "bodyText": bodyText as Any,
-                        "tags": tags
-                    ]
-                    
-                    callAPI(withJSON: jsonPayload) { (jsonResponse) in
-                        if let success = jsonResponse["success"] as? Int {
-                            if (success == 1) {
-                                print("New post was created.")
-                                self.dismiss(animated: true, completion: nil)
-                            } else {
-                                print("New post was NOT created.")
-                            }
-                        }
+            guard let bodyText = self.textBodyTextView.text
+                else {
+                    fatalError("Could not get value for bodyText.")
+            }
+        
+            // Create an array out of the tags string...
+            let tags = self.tagsTextView.text.split(separator: ",")
+        
+            let jsonPayload = [
+                "function": "createPost",
+                "userID": getUserID(),
+                "token": getToken(),
+                "imageURL": self.imageURL,
+                "bodyText": bodyText,
+                "tags": tags
+                ] as [String : Any]
+        
+            callAPI(withJSON: jsonPayload) { (jsonResponse) in
+                if let success = jsonResponse["success"] as? Int {
+                    if (success == 1) {
+                        print("New post was created.")
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("New post was NOT created.")
                     }
                 }
             }

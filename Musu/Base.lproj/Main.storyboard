@@ -505,6 +505,14 @@
                                     <action selector="submitPost:" destination="54O-OA-KJ7" eventType="touchUpInside" id="u9s-xs-2sY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tki-LY-ofm">
+                                <rect key="frame" x="16" y="612" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Suggest Tags"/>
+                                <connections>
+                                    <action selector="suggestTags:" destination="54O-OA-KJ7" eventType="touchUpInside" id="adO-BG-hCs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zl8-Jp-fbp"/>
