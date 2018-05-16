@@ -8,7 +8,7 @@
 
 import Foundation
 
-func callAPI(withJSON: Dictionary<String, String>, Completion block: @escaping ([String: Any]) -> ()) {
+func callAPI(withJSON: Dictionary<String, Any>, Completion block: @escaping ([String: Any]) -> ()) {
 
     let jsonPayload = withJSON
 

@@ -41,6 +41,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
     }
     
     // TODO: This seems very buggy; research a better method...
+    // https://stackoverflow.com/a/45382225
     @objc func keyboardWillHide(notification: NSNotification) {
 //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
 //            if self.view.frame.origin.y != 0 {
@@ -187,17 +188,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
                 if let imageURL = result.url {
                     print(imageURL)
                     
-                    let bodyText = self.textBodyTextView.text
-                    let tags = self.tagsTextView.text
+                    guard let bodyText = self.textBodyTextView.text
+                        else {
+                            fatalError("Could not get value for bodyText.")
+                    }
+                    
+                    // Create an array out of the tags string...
+                    let tags = self.tagsTextView.text.split(separator: ",")
                     
                     let jsonPayload = [
                         "function": "createPost",
                         "userID": getUserID(),
                         "token": getToken(),
                         "imageURL": imageURL,
-                        "bodyText": bodyText,
+                        "bodyText": bodyText as Any,
                         "tags": tags
-                    ] as! Dictionary<String, String>
+                    ]
                     
                     callAPI(withJSON: jsonPayload) { (jsonResponse) in
                         if let success = jsonResponse["success"] as? Int {
