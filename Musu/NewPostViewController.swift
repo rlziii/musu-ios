@@ -167,10 +167,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
                 "bodyText": bodyText,
             ]
             
-            // NOTES TO SELF
-            // This shit don't work
-            // Find out how to get tags back from the server
-            
+            // TODO: Merge user-inputted tags with suggested tags
             callAPI(withJSON: jsonPayload) { (jsonResponse) in
                 if let success = jsonResponse["success"] as? Int {
                     if (success == 1) {
