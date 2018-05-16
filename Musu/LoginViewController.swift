@@ -87,6 +87,11 @@ class LoginViewController: UIViewController {
     
     //MARK: Actions
 
+    // https://stackoverflow.com/a/32798799
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        // Empty
+    }
+    
     @IBAction func loginButton(_ sender: UIButton) {
         // Dismiss the keyboard when login button is pressed
         self.usernameTextField.resignFirstResponder()
@@ -131,7 +136,9 @@ class LoginViewController: UIViewController {
                     
                     self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
                     DispatchQueue.main.async {
-                        self.changeLoginStatus(to: (jsonResponse["message"])! as! String)
+                        self.changeLoginStatus(to: "...")
+                        self.usernameTextField.text = ""
+                        self.passwordTextField.text = ""
                     }
                 } else {
                     DispatchQueue.main.async {

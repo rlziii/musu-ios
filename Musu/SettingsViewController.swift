@@ -36,6 +36,27 @@ class SettingsViewController: UIViewController {
 
     //MARK: Actions
 
+    @IBAction func logout(_ sender: UIButton) {
+        // TODO: Potentially update this to call the API logout endpoint
+        
+        do {
+            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: getUserID(), accessGroup: KeychainConfiguration.accessGroup)
+                        
+            try tokenItem.deleteItem()
+            print("Token deleted from Keychain.")
+        } catch {
+            print("Token could not be deleted from Keychain")
+        }
+        
+        UserDefaults.standard.set(0, forKey: "userID")
+        print("userID set to '0' in UserDefaults")
+        
+        UserDefaults.standard.set(false, forKey: "hasTokenSaved")
+        print("hasTokenSaved set to 'false' in UserDefaults")
+        
+        self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+    }
+    
     @IBAction func updateUser(_ sender: UIButton) {
         
         // Dismiss the keyboard when login button is pressed

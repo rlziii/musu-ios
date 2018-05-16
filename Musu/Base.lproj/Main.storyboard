@@ -293,6 +293,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrX-dc-SAw">
+                                <rect key="frame" x="163" y="61" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="2sR-0C-mvi" eventType="touchUpInside" id="eCw-qc-Ne9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -300,6 +307,7 @@
                             <constraint firstItem="Zkj-Z8-uAB" firstAttribute="top" secondItem="2d1-lK-iXg" secondAttribute="bottom" constant="25" id="3wP-8c-Xqt"/>
                             <constraint firstItem="pnV-HI-y5s" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="6Uo-9O-oHN"/>
                             <constraint firstItem="M1v-t6-MAc" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="Aff-cN-8cu"/>
+                            <constraint firstItem="VrX-dc-SAw" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="BES-wE-oZ4"/>
                             <constraint firstItem="2d1-lK-iXg" firstAttribute="top" secondItem="uXs-7c-s2D" secondAttribute="bottom" constant="25" id="CXU-4f-0hU"/>
                             <constraint firstItem="XKg-SV-RjY" firstAttribute="top" secondItem="Zkj-Z8-uAB" secondAttribute="bottom" constant="25" id="KOy-zl-7UE"/>
                             <constraint firstItem="uXs-7c-s2D" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="WJA-xu-ofZ"/>
@@ -311,6 +319,7 @@
                             <constraint firstItem="M1v-t6-MAc" firstAttribute="centerY" secondItem="Po2-G0-qhI" secondAttribute="centerY" id="gF7-dj-pF0"/>
                             <constraint firstItem="NR0-vj-rDD" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="p19-jv-hgz"/>
                             <constraint firstItem="XKg-SV-RjY" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="rlY-d9-bZB"/>
+                            <constraint firstItem="NR0-vj-rDD" firstAttribute="top" secondItem="VrX-dc-SAw" secondAttribute="bottom" constant="25" id="uLu-Zz-xkk"/>
                             <constraint firstItem="Zkj-Z8-uAB" firstAttribute="centerX" secondItem="Po2-G0-qhI" secondAttribute="centerX" id="xRc-mV-AfQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DCV-gB-Oli"/>
@@ -324,9 +333,11 @@
                         <outlet property="newPasswordVerifyTextField" destination="XKg-SV-RjY" id="ia7-7U-DvP"/>
                         <outlet property="newUsernameTextField" destination="2d1-lK-iXg" id="GhP-V5-07z"/>
                         <outlet property="updateUserStatusLabel" destination="pnV-HI-y5s" id="TxQ-0r-9XG"/>
+                        <segue destination="8Kq-Xf-zPd" kind="unwind" identifier="LogoutSegue" unwindAction="prepareForUnwindWithSegue:" id="R11-tv-BFY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MuD-oW-RIx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8Kq-Xf-zPd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1574" y="429"/>
         </scene>
