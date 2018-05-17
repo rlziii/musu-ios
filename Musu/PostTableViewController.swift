@@ -10,6 +10,9 @@ import UIKit
 
 class PostTableViewController: UITableViewController {
     
+    // https://cocoacasts.com/how-to-add-pull-to-refresh-to-a-table-view-or-collection-view
+    private var refreshController: UIRefreshControl? = nil
+    
     //MARK: Properties
     
     var posts = [Post]()
@@ -25,10 +28,21 @@ class PostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        refreshController = UIRefreshControl()
+        
+        tableView.refreshControl = refreshController
+        
+        refreshController?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshController?.attributedTitle = NSAttributedString(string: "Refreshing posts...")
+        
         // Load JSON data
         loadPosts()
     }
 
+    @objc private func refreshData(_ sender: Any) {
+        loadPosts()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -146,6 +160,12 @@ class PostTableViewController: UITableViewController {
     //MARK: Private Methods
     
     private func loadPosts() {
+        // TODO: The refresh for this needs to be much more effecient (especially for getPostsLatest)
+        // Perhaps check to see if it's already in the list and don't update the image...
+        
+        // Clear all previous posts first...
+        posts.removeAll(keepingCapacity: false)
+        
         let jsonPayload = [
             "function": apiFunctionName,
             "userID": getUserID(),
@@ -187,7 +207,11 @@ class PostTableViewController: UITableViewController {
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.refreshController?.endRefreshing()
+//                        self.updateView()
+//                        self.activityIndicatorView.stopAnimating()
                     }
+                    
                     // ***
                 } else {
                     fatalError("getPostsPersonal failed")
