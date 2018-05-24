@@ -8,7 +8,12 @@
 
 import UIKit
 
+// This is global to allow the use of cache throughout all PostTableViewControllers
+// Is there perhaps a better way to accomplish this?
+let imageCache = NSCache<NSString, UIImage>()
+
 class PostTableViewController: UITableViewController {
+    // TODO: Possible crash when the app is recovering from a save state
     
     // https://cocoacasts.com/how-to-add-pull-to-refresh-to-a-table-view-or-collection-view
     private var refreshController: UIRefreshControl? = nil
@@ -40,7 +45,9 @@ class PostTableViewController: UITableViewController {
     }
 
     @objc private func refreshData(_ sender: Any) {
+//        tableView.isUserInteractionEnabled = false
         loadPosts()
+//        tableView.isUserInteractionEnabled = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,13 +165,28 @@ class PostTableViewController: UITableViewController {
     }
 
     //MARK: Private Methods
+
+    // https://medium.com/journey-of-one-thousand-apps/caching-images-in-swift-e909a8e5db17
+    private func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+            print("Image retrieved from cache")
+            completion(cachedImage)
+        } else {
+            print("Downloading image from server")
+            if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                print("Image saved to cache")
+                
+                completion(image)
+            } else {
+                fatalError("Could not set image cache")
+            }
+        }
+    }
     
     private func loadPosts() {
         // TODO: The refresh for this needs to be much more effecient (especially for getPostsLatest)
         // Perhaps check to see if it's already in the list and don't update the image...
-        
-        // Clear all previous posts first...
-        posts.removeAll(keepingCapacity: false)
         
         let jsonPayload = [
             "function": apiFunctionName,
@@ -173,10 +195,11 @@ class PostTableViewController: UITableViewController {
             "token": getToken()
         ]
         
+        var newPosts = [Post]()
+        
         callAPI(withJSON: jsonPayload) { (jsonResponse) in
             if let success = jsonResponse["success"] as? Int {
                 if (success == 1) {
-                    // ***
                     for post in jsonResponse["results"] as! [Dictionary<String, Any>] {
                         let username = post["username"] as! String
                         let bodyText = post["bodyText"] as! String
@@ -194,28 +217,35 @@ class PostTableViewController: UITableViewController {
                         }
                         
                         DispatchQueue.global().async {
-                            let data = try? Data(contentsOf: imageURL!)
-                            
-                            DispatchQueue.main.async {
-                                _post.image = UIImage(data: data!)
-                                self.tableView.reloadData()
+                            guard let imageURL = imageURL
+                                else {
+                                    fatalError("Unable to fetch image URL")
                             }
+                            
+                            self.downloadImage(url: imageURL, completion: { image in
+                                DispatchQueue.main.async {
+                                    _post.image = image
+                                    self.tableView.reloadData()
+                                }
+                            })
                         }
 
-                        self.posts += [_post]
+                        newPosts.append(_post)
+                        self.posts.append(_post)
                     }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.refreshController?.endRefreshing()
-//                        self.updateView()
-//                        self.activityIndicatorView.stopAnimating()
-                    }
-                    
-                    // ***
                 } else {
                     fatalError("getPostsPersonal failed")
                 }
+            }
+            
+            DispatchQueue.main.async {
+                self.refreshController?.endRefreshing()
+                
+                self.posts.removeAll(keepingCapacity: false)
+                self.posts = newPosts
+                newPosts.removeAll(keepingCapacity: false)
+                
+                self.tableView.reloadData()
             }
         }
     }
