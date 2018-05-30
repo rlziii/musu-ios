@@ -8,11 +8,36 @@
 
 import UIKit
 
+// This is an array of DispatchWorkItems that handle the downloading of images...
+var imageDownloadTasks = [DispatchWorkItem]()
+
 // This is global to allow the use of cache throughout all PostTableViewControllers
 // Is there perhaps a better way to accomplish this?
 let imageCache = NSCache<NSString, UIImage>()
 
-class PostTableViewController: UITableViewController {
+class PostTableViewController: UITableViewController, PostCellDelegate {
+    
+    func didPressDeleteButton(_ postID: Int) {
+        print(String(postID))
+        print("didPressDeleteButton called")
+        let jsonPayload = [
+            "function": "deletePost",
+            "userID": getUserID(),
+            "token": getToken(),
+            "postID": String(postID)
+        ]
+        
+        callAPI(withJSON: jsonPayload) { (jsonResponse) in
+            if let success = jsonResponse["success"] as? Int {
+                if (success == 1) {
+                    self.loadPosts()
+                } else {
+                    print("Failed to delete post: \(String(describing: jsonResponse["error"]))")
+                }
+            }
+        }
+    }
+    
     // TODO: Possible crash when the app is recovering from a save state
     
     // https://cocoacasts.com/how-to-add-pull-to-refresh-to-a-table-view-or-collection-view
@@ -43,7 +68,7 @@ class PostTableViewController: UITableViewController {
         // Load JSON data
         loadPosts()
     }
-
+    
     @objc private func refreshData(_ sender: Any) {
 //        tableView.isUserInteractionEnabled = false
         loadPosts()
@@ -73,10 +98,13 @@ class PostTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of PostTableViewCell.")
         }
 
+        cell.postCellDelegate = self
+        
         // Fetches the appropriate post for the data source layout.
         let post = posts[indexPath.row]
         
         cell.likeButton.tag = post.postID
+        cell.deleteButton.tag = post.postID
         
         cell.bodyTextLabel.text = post.bodyText
         cell.photoImageView.image = post.image
@@ -86,6 +114,10 @@ class PostTableViewController: UITableViewController {
             cell.likeButton.setTitle("Unlike", for: .normal)
         } else {
             cell.likeButton.setTitle("Like", for: .normal)
+        }
+        
+        if post.userID == Int(getUserID()) {
+            cell.deleteButton.isHidden = false
         }
         
         return cell
@@ -168,23 +200,29 @@ class PostTableViewController: UITableViewController {
 
     // https://medium.com/journey-of-one-thousand-apps/caching-images-in-swift-e909a8e5db17
     private func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
-        if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
-            print("Image retrieved from cache")
-            completion(cachedImage)
-        } else {
-            print("Downloading image from server")
-            if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                imageCache.setObject(image, forKey: url.absoluteString as NSString)
-                print("Image saved to cache")
-                
-                completion(image)
+        let imageDownloadTask = DispatchWorkItem {
+            if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) {
+                print("Image retrieved from cache")
+                completion(cachedImage)
             } else {
-                fatalError("Could not set image cache")
+                print("Downloading image from server")
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                    print("Image saved to cache")
+                    
+                    completion(image)
+                } else {
+                    fatalError("Could not set image cache")
+                }
             }
         }
+        
+        imageDownloadTasks.append(imageDownloadTask)
+        
+        imageDownloadTask.perform()
     }
     
-    private func loadPosts() {
+    public func loadPosts() {
         // TODO: The refresh for this needs to be much more effecient (especially for getPostsLatest)
         // Perhaps check to see if it's already in the list and don't update the image...
         
@@ -216,7 +254,7 @@ class PostTableViewController: UITableViewController {
                             fatalError("Unable to instantiate post")
                         }
                         
-                        DispatchQueue.global().async {
+                        DispatchQueue.global(qos: .background).async {
                             guard let imageURL = imageURL
                                 else {
                                     fatalError("Unable to fetch image URL")

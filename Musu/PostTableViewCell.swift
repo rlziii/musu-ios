@@ -8,13 +8,20 @@
 
 import UIKit
 
+protocol PostCellDelegate : class {
+    func didPressDeleteButton(_ postID: Int)
+}
+
 class PostTableViewCell: UITableViewCell {
+    
+    weak var postCellDelegate: PostCellDelegate?
     
     //MARK: Properties
     @IBOutlet weak var bodyTextLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +35,12 @@ class PostTableViewCell: UITableViewCell {
     }
     
     // MARK: Actions
+    
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        print("Delete button pressed")
+        postCellDelegate?.didPressDeleteButton(sender.tag)
+    }
+    
     @IBAction func likeOrUnlike(_ sender: UIButton) {
         // Get the postID from the button's tag
         let postID = sender.tag
