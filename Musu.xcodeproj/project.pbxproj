@@ -21,6 +21,7 @@
 		B1B5B04C20884FF7001BF2C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */; };
 		B1BCD40C209DDE530061CE59 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */; };
 		B1E6CC17208EDB0C00276697 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6CC16208EDB0C00276697 /* Post.swift */; };
+		B1EB465720C0BC0900C7B96A /* HelperExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EB465620C0BC0900C7B96A /* HelperExtensions.swift */; };
 		B1F154E0209FE4C900E74A7B /* PostsPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */; };
 		B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */; };
 		B1F154E4209FE77000E74A7B /* PostsGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */; };
@@ -59,6 +60,7 @@
 		B1B5B04D20884FF7001BF2C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1BCD40B209DDE530061CE59 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		B1E6CC16208EDB0C00276697 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B1EB465620C0BC0900C7B96A /* HelperExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperExtensions.swift; sourceTree = "<group>"; };
 		B1F154DF209FE4C900E74A7B /* PostsPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPersonalViewController.swift; sourceTree = "<group>"; };
 		B1F154E1209FE75E00E74A7B /* PostsLatestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsLatestViewController.swift; sourceTree = "<group>"; };
 		B1F154E3209FE77000E74A7B /* PostsGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsGroupsViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				B12CADF5208984660023746D /* API.swift */,
 				B193E09620A90E52007515D4 /* UserInfo.swift */,
 				B1B5B04520884FF5001BF2C7 /* Main.storyboard */,
+				B1EB465620C0BC0900C7B96A /* HelperExtensions.swift */,
 				B1B5B04820884FF7001BF2C7 /* Assets.xcassets */,
 				B1B5B04A20884FF7001BF2C7 /* LaunchScreen.storyboard */,
 				B1B5B04D20884FF7001BF2C7 /* Info.plist */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12CADF6208984660023746D /* API.swift in Sources */,
+				B1EB465720C0BC0900C7B96A /* HelperExtensions.swift in Sources */,
 				B1F154E6209FEEB500E74A7B /* PostDetailViewController.swift in Sources */,
 				B1F154E2209FE75E00E74A7B /* PostsLatestViewController.swift in Sources */,
 				B1803A3520A3CF8000830BA0 /* NewPostViewController.swift in Sources */,

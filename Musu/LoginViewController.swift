@@ -29,9 +29,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginStatusLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.underlined()
+        passwordTextField.underlined()
+        
+        loginButton.layer.cornerRadius = 4
         
         attemptAutoLogin()
     }
