@@ -129,7 +129,9 @@
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suU-tG-cF9">
                                             <rect key="frame" x="314" y="49" width="45" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="deleteButtonPressed:" destination="tU6-Tj-LvA" eventType="touchUpInside" id="QpH-FT-GqG"/>
                                             </connections>
@@ -213,7 +215,9 @@
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwB-St-Tlc">
                                             <rect key="frame" x="314" y="49" width="45" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="deleteButtonPressed:" destination="Kfl-sK-hGu" eventType="touchUpInside" id="br7-ew-E57"/>
                                             </connections>
@@ -420,7 +424,9 @@
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-ct-1b2">
                                             <rect key="frame" x="314" y="49" width="45" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="deleteButtonPressed:" destination="zar-7U-cnm" eventType="touchUpInside" id="MRc-mO-Hou"/>
                                             </connections>
@@ -778,7 +784,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ifA-lV-oPH"/>
-        <segue reference="qQg-Tt-mS1"/>
+        <segue reference="ogw-ID-mGL"/>
+        <segue reference="Ftu-n4-GKE"/>
     </inferredMetricsTieBreakers>
 </document>
