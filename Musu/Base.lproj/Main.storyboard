@@ -123,7 +123,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Like"/>
                                             <connections>
-                                                <action selector="likeOrUnlike:" destination="tU6-Tj-LvA" eventType="touchUpInside" id="YJx-zK-r5e"/>
+                                                <action selector="likeButtonPressed:" destination="tU6-Tj-LvA" eventType="touchUpInside" id="YJx-zK-r5e"/>
                                             </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suU-tG-cF9">
@@ -209,7 +209,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Like"/>
                                             <connections>
-                                                <action selector="likeOrUnlike:" destination="Kfl-sK-hGu" eventType="touchUpInside" id="D25-uB-Yfm"/>
+                                                <action selector="likeButtonPressed:" destination="Kfl-sK-hGu" eventType="touchUpInside" id="D25-uB-Yfm"/>
                                             </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwB-St-Tlc">
@@ -418,7 +418,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Like"/>
                                             <connections>
-                                                <action selector="likeOrUnlike:" destination="zar-7U-cnm" eventType="touchUpInside" id="4Zj-D8-w0g"/>
+                                                <action selector="likeButtonPressed:" destination="zar-7U-cnm" eventType="touchUpInside" id="4Zj-D8-w0g"/>
                                             </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-ct-1b2">

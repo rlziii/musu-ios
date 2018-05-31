@@ -10,6 +10,7 @@ import UIKit
 
 protocol PostCellDelegate : class {
     func didPressDeleteButton(_ postID: Int)
+    func didPressLikeButton(_ postID: Int, _ currentButtonTitle: String, _ sender: PostTableViewCell)
 }
 
 class PostTableViewCell: UITableViewCell {
@@ -37,46 +38,14 @@ class PostTableViewCell: UITableViewCell {
     // MARK: Actions
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        print("Delete button pressed")
         postCellDelegate?.didPressDeleteButton(sender.tag)
     }
     
-    @IBAction func likeOrUnlike(_ sender: UIButton) {
-        // Get the postID from the button's tag
-        let postID = sender.tag
-        
-        var apiFunctionName: String
-        var newButtonTitle: String
-        
-        if likeButton.currentTitle == "Like" {
-            // Unlike the post...
-            apiFunctionName = "likePost"
-            newButtonTitle = "Unlike"
-        } else {
-            // Like the post...
-            apiFunctionName = "unlikePost"
-            newButtonTitle = "Like"
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        if let currentButtonTitle = likeButton.currentTitle {
+            postCellDelegate?.didPressLikeButton(sender.tag, currentButtonTitle, self)
         }
         
-        let jsonPayload = [
-            "function": apiFunctionName,
-            "userID": getUserID(),
-            "token": getToken(),
-            "postID": String(postID)
-        ]
-        
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    DispatchQueue.main.async {
-                        self.likeButton.setTitle(newButtonTitle, for: .normal)
-                    }
-                } else {
-                    print("Failed to like/unlike post: \(String(describing: jsonResponse["error"]))")
-                    return
-                }
-            }
-        }
     }
     
 }

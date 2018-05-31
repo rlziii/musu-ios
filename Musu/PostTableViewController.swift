@@ -18,8 +18,6 @@ let imageCache = NSCache<NSString, UIImage>()
 class PostTableViewController: UITableViewController, PostCellDelegate {
     
     func didPressDeleteButton(_ postID: Int) {
-        print(String(postID))
-        print("didPressDeleteButton called")
         let jsonPayload = [
             "function": "deletePost",
             "userID": getUserID(),
@@ -33,6 +31,41 @@ class PostTableViewController: UITableViewController, PostCellDelegate {
                     self.loadPosts()
                 } else {
                     print("Failed to delete post: \(String(describing: jsonResponse["error"]))")
+                }
+            }
+        }
+    }
+    
+    func didPressLikeButton(_ postID: Int, _ currentButtonTitle: String, _ sender: PostTableViewCell) {
+        var apiFunctionName: String
+        var newButtonTitle: String
+        
+        if currentButtonTitle == "Like" {
+            // Unlike the post...
+            apiFunctionName = "likePost"
+            newButtonTitle = "Unlike"
+        } else {
+            // Like the post...
+            apiFunctionName = "unlikePost"
+            newButtonTitle = "Like"
+        }
+        
+        let jsonPayload = [
+            "function": apiFunctionName,
+            "userID": getUserID(),
+            "token": getToken(),
+            "postID": String(postID)
+        ]
+        
+        callAPI(withJSON: jsonPayload) { (jsonResponse) in
+            if let success = jsonResponse["success"] as? Int {
+                if (success == 1) {
+                    DispatchQueue.main.async {
+                        sender.likeButton.setTitle(newButtonTitle, for: .normal)
+                    }
+                } else {
+                    print("Failed to like/unlike post: \(String(describing: jsonResponse["error"]))")
+                    return
                 }
             }
         }
