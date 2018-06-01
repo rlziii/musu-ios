@@ -149,9 +149,7 @@ class PostTableViewController: UITableViewController, PostCellDelegate {
             cell.likeButton.setTitle("Like", for: .normal)
         }
         
-        if post.userID == Int(getUserID()) {
-            cell.deleteButton.isHidden = false
-        }
+        cell.deleteButton.isHidden = post.userID == Int(getUserID()) ? false : true
         
         return cell
     }
