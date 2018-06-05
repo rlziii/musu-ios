@@ -99,16 +99,14 @@ class SettingsViewController: UIViewController {
             "emailAddress": emailAddress,
             ] as! Dictionary<String, String>
         
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    DispatchQueue.main.async {
-                        self.changeUpdateUserStatus(to: (jsonResponse["message"])! as! String)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.changeUpdateUserStatus(to: (jsonResponse["error"])! as! String)
-                    }
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+                DispatchQueue.main.async {
+                    self.changeUpdateUserStatus(to: (jsonResponse["message"])! as! String)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.changeUpdateUserStatus(to: (jsonResponse["error"])! as! String)
                 }
             }
         }

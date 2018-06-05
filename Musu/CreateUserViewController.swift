@@ -1,11 +1,3 @@
-//
-//  SecondViewController.swift
-//  Musu
-//
-//  Created by Richard Zarth on 4/19/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 
 class CreateUserViewController: UIViewController {
@@ -22,29 +14,26 @@ class CreateUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func changeCreateUserStatus(to: String) {
-        createUserStatusLabel.text = to
+    private func changeCreateUserStatus(to newStatus: String) {
+        createUserStatusLabel.text = newStatus
     }
 
-    //MARK: Actions
-
-    @IBAction func createUser(_ sender: UIButton) {
-        // Dismiss the keyboard when login button is pressed
+    private func dismissAllKeyboards() {
         self.firstNameTextField.resignFirstResponder()
         self.lastNameTextField.resignFirstResponder()
         self.usernameTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         self.passwordVerifyTextField.resignFirstResponder()
         self.emailAddressTextField.resignFirstResponder()
-
+    }
+    
+    private func createUser() {
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text
         let username = usernameTextField.text
@@ -73,20 +62,27 @@ class CreateUserViewController: UIViewController {
             "username": username,
             "password": password,
             "emailAddress": emailAddress,
-            ] as! Dictionary<String, String>
+        ]
         
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    DispatchQueue.main.async {
-                        self.changeCreateUserStatus(to: (jsonResponse["message"])! as! String)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.changeCreateUserStatus(to: (jsonResponse["error"])! as! String)
-                    }
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+                DispatchQueue.main.async {
+                    self.changeCreateUserStatus(to: (jsonResponse["message"])! as! String)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.changeCreateUserStatus(to: (jsonResponse["error"])! as! String)
                 }
             }
         }
     }
+    
+    //MARK: Actions
+
+    @IBAction func createUserButtonTapped(_ sender: UIButton) {
+        dismissAllKeyboards()
+        
+        createUser()
+    }
+    
 }

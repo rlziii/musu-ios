@@ -1,11 +1,3 @@
-//
-//  FirstViewController.swift
-//  Musu
-//
-//  Created by Richard Zarth on 4/19/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 /*
  * TODO LIST
  *
@@ -15,7 +7,6 @@
 
 import UIKit
 
-// Keychain Configuration
 // https://www.raywenderlich.com/179924/secure-ios-user-data-keychain-biometrics-face-id-touch-id
 struct KeychainConfiguration {
     static let serviceName = "Musu"
@@ -24,7 +15,7 @@ struct KeychainConfiguration {
 
 class LoginViewController: UIViewController {
 
-    //MARK: Properties
+    // MARK: Properties
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -44,116 +35,126 @@ class LoginViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func changeLoginStatus(to: String) {
-        loginStatusLabel.text = to
+    private func changeLoginStatus(to newStatus: String) {
+        loginStatusLabel.text = newStatus
     }
     
-    // Attempt to (silently) login via a saved userID and token
-    func attemptAutoLogin() {
-        print("Attempting auto login")
+    private func attemptAutoLogin() {
+        print("attemptAutoLogin(): Attempting silent automatic login...")
         
         // If the hasTokenSaved key is set...
         if let hasTokenSaved = UserDefaults.standard.object(forKey: "hasTokenSaved") as? Bool {
             // And the hasTokenSaved key is set to true...
             if hasTokenSaved {
-                print("hasTokenSaved UserDefaults key found as true")
+                print("attemptAutoLogin(): hasTokenSaved UserDefaults key found as true.")
                 
                 // Build the JSON payload
                 let jsonPayload = [
                     "function": "loginWithToken",
                     "userID": getUserID(),
                     "token": getToken(),
-                    ]
+                ]
                 
-                // Call the API and send the JSON payload
-                callAPI(withJSON: jsonPayload) { (jsonResponse) in
-                    if let success = jsonResponse["success"] as? Int {
-                        if (success == 1) {
-                            print ("Auto login successful!")
-                            self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
+                callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+                    if successful {
+                        print ("attemptAutoLogin(): Automatic login successful!")
+                        self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
+                    } else {
+                        // Silently fail
+                        
+                        if let error = jsonResponse["error"] as? String {
+                            print("attemptAutoLogin(): Automatic login failed: \(error)")
                         } else {
-                            // Silently fail
-                            print("Auto login failed after API call: \(jsonResponse["error"] as! String)")
-                            return
+                            print("attemptAutoLogin(): Could not parse jsonRepsonse[\"error\"].")
                         }
                     }
                 }
             } else {
-                print("hasTokenSaved UserDefaults key found as false")
+                print("attemptAutoLogin(): hasTokenSaved UserDefaults key found as false.")
             }
         } else {
             // Silently fail
-            print("hasTokenSaved UserDefaults key not found")
-            return
+            print("attemptAutoLogin(): hasTokenSaved UserDefaults key not found.")
         }
+    }
+    
+    private func updateKeychain(_ token: String, _ userID: Int) {
+        do {
+            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                                 account: String(userID),
+                                                 accessGroup: KeychainConfiguration.accessGroup)
+            
+            try tokenItem.savePassword(token)
+            
+            UserDefaults.standard.set(userID, forKey: "userID")
+            UserDefaults.standard.set(true, forKey: "hasTokenSaved")
+        } catch let error {
+            fatalError("updateKeychain(): \(error)")
+        }
+    }
+    
+    private func loginAttempt() {
+        guard let username = usernameTextField.text else {
+            fatalError("loginAttempt(): Could not get username from text field.")
+        }
+        
+        guard let password = passwordTextField.text else {
+            fatalError("loginAttempt(): Could not get password from text field.")
+        }
+        
+        let jsonPayload = [
+            "function": "loginWithUsername",
+            "username": username,
+            "password": password,
+        ]
+        
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+
+                guard let results = jsonResponse["results"] as? [String: Any],
+                      let token = results["token"] as? String,
+                      let userID = results["userID"] as? Int else {
+                    fatalError("loginAttempt(): Could not parse token and userID for updateKeychain().")
+                }
+                
+                self.updateKeychain(token, userID)
+                
+                self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
+                
+                DispatchQueue.main.async {
+                    self.changeLoginStatus(to: "...")
+                    self.usernameTextField.text = ""
+                    self.passwordTextField.text = ""
+                }
+            } else {
+                DispatchQueue.main.async {
+                    if let error = jsonResponse["error"] as? String {
+                        self.changeLoginStatus(to: error)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func dismissAllKeyboards() {
+        self.usernameTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
     }
     
     //MARK: Actions
 
     // https://stackoverflow.com/a/32798799
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        // Empty
+        // TODO: Should this be empty?
     }
     
-    @IBAction func loginButton(_ sender: UIButton) {
-        // Dismiss the keyboard when login button is pressed
-        self.usernameTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        dismissAllKeyboards()
         
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        
-        let jsonPayload = [
-            "function": "loginWithUsername",
-            "username": username,
-            "password": password,
-            ] as! Dictionary<String, String>
-        
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    
-                    print(jsonResponse)
-                    print("----------")
-                    print(jsonResponse["results"] as? [String: Any] as Any)
-                    
-                    guard let jsonResults = jsonResponse["results"] as? [String: Any],
-                          let token = jsonResults["token"] as? String,
-                          let userID = jsonResults["userID"] as? Int
-                    else {
-                        fatalError("Problem with username and/or token")
-                    }
-                    
-                    do {
-                        let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                             account: String(userID),
-                                                             accessGroup: KeychainConfiguration.accessGroup)
-
-                        try tokenItem.savePassword(token)
-                        
-                        UserDefaults.standard.set(userID, forKey: "userID")
-                        UserDefaults.standard.set(true, forKey: "hasTokenSaved")
-                    } catch {
-                        fatalError("Error updating Keychain - \(error)")
-                    }
-                    
-                    self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
-                    DispatchQueue.main.async {
-                        self.changeLoginStatus(to: "...")
-                        self.usernameTextField.text = ""
-                        self.passwordTextField.text = ""
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.changeLoginStatus(to: (jsonResponse["error"])! as! String)
-                    }
-                }
-            }
-        }
+        loginAttempt()
     }
+    
 }
-// https://developer.apple.com/documentation/code_diagnostics/main_thread_checker
 

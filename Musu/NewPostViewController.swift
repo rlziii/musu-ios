@@ -168,17 +168,15 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
             ]
             
             // TODO: Merge user-inputted tags with suggested tags
-            callAPI(withJSON: jsonPayload) { (jsonResponse) in
-                if let success = jsonResponse["success"] as? Int {
-                    if (success == 1) {
-                        if let tags = jsonResponse["results"] as? Array<String> {
-                            DispatchQueue.main.async {
-                                self.tagsTextView.text = tags.joined(separator: ", ")
-                            }
+            callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+                if successful {
+                    if let tags = jsonResponse["results"] as? Array<String> {
+                        DispatchQueue.main.async {
+                            self.tagsTextView.text = tags.joined(separator: ", ")
                         }
-                    } else {
-                        print("Suggest tags failed.")
                     }
+                } else {
+                    print("Suggest tags failed.")
                 }
             }
         }
@@ -275,14 +273,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
                 "tags": tags
                 ] as [String : Any]
         
-            callAPI(withJSON: jsonPayload) { (jsonResponse) in
-                if let success = jsonResponse["success"] as? Int {
-                    if (success == 1) {
-                        print("New post was created.")
-                        self.dismiss(animated: true, completion: nil)
-                    } else {
-                        print("New post was NOT created.")
-                    }
+            callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+                if successful {
+                    print("New post was created.")
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    print("New post was NOT created.")
                 }
             }
         }

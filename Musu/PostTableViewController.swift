@@ -25,13 +25,11 @@ class PostTableViewController: UITableViewController, PostCellDelegate {
             "postID": String(postID)
         ]
         
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    self.loadPosts()
-                } else {
-                    print("Failed to delete post: \(String(describing: jsonResponse["error"]))")
-                }
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+                self.loadPosts()
+            } else {
+                print("Failed to delete post: \(String(describing: jsonResponse["error"]))")
             }
         }
     }
@@ -57,16 +55,14 @@ class PostTableViewController: UITableViewController, PostCellDelegate {
             "postID": String(postID)
         ]
         
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    DispatchQueue.main.async {
-                        sender.likeButton.setTitle(newButtonTitle, for: .normal)
-                    }
-                } else {
-                    print("Failed to like/unlike post: \(String(describing: jsonResponse["error"]))")
-                    return
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+                DispatchQueue.main.async {
+                    sender.likeButton.setTitle(newButtonTitle, for: .normal)
                 }
+            } else {
+                print("Failed to like/unlike post: \(String(describing: jsonResponse["error"]))")
+                return
             }
         }
     }
@@ -266,45 +262,43 @@ class PostTableViewController: UITableViewController, PostCellDelegate {
         
         var newPosts = [Post]()
         
-        callAPI(withJSON: jsonPayload) { (jsonResponse) in
-            if let success = jsonResponse["success"] as? Int {
-                if (success == 1) {
-                    for post in jsonResponse["results"] as! [Dictionary<String, Any>] {
-                        let username = post["username"] as! String
-                        let bodyText = post["bodyText"] as! String
-                        let postID = post["postID"] as! Int
-                        let userID = post["userID"] as! Int
-                        let imageURL = URL(string: post["imageURL"] as! String)
-                        let tags = post["tags"] as! Array<String>
-                        let isLiked = post["isLiked"] as! Bool
-                        
-                        // This is just a temporary image while the real one is loading asynchronously
-                        let image = UIImage(named: "placeholder_image")
-                        
-                        guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags, isLiked: isLiked) else {
-                            fatalError("Unable to instantiate post")
-                        }
-                        
-                        DispatchQueue.global(qos: .background).async {
-                            guard let imageURL = imageURL
-                                else {
-                                    fatalError("Unable to fetch image URL")
-                            }
-                            
-                            self.downloadImage(url: imageURL, completion: { image in
-                                DispatchQueue.main.async {
-                                    _post.image = image
-                                    self.tableView.reloadData()
-                                }
-                            })
-                        }
-
-                        newPosts.append(_post)
-                        self.posts.append(_post)
+        callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
+            if successful {
+                for post in jsonResponse["results"] as! [Dictionary<String, Any>] {
+                    let username = post["username"] as! String
+                    let bodyText = post["bodyText"] as! String
+                    let postID = post["postID"] as! Int
+                    let userID = post["userID"] as! Int
+                    let imageURL = URL(string: post["imageURL"] as! String)
+                    let tags = post["tags"] as! Array<String>
+                    let isLiked = post["isLiked"] as! Bool
+                    
+                    // This is just a temporary image while the real one is loading asynchronously
+                    let image = UIImage(named: "placeholder_image")
+                    
+                    guard let _post = Post(username: username, bodyText: bodyText, postID: postID, userID: userID, image: image, tags: tags, isLiked: isLiked) else {
+                        fatalError("Unable to instantiate post")
                     }
-                } else {
-                    fatalError("getPostsPersonal failed")
+                    
+                    DispatchQueue.global(qos: .background).async {
+                        guard let imageURL = imageURL
+                            else {
+                                fatalError("Unable to fetch image URL")
+                        }
+                        
+                        self.downloadImage(url: imageURL, completion: { image in
+                            DispatchQueue.main.async {
+                                _post.image = image
+                                self.tableView.reloadData()
+                            }
+                        })
+                    }
+
+                    newPosts.append(_post)
+                    self.posts.append(_post)
                 }
+            } else {
+                fatalError("getPostsPersonal failed")
             }
             
             DispatchQueue.main.async {
