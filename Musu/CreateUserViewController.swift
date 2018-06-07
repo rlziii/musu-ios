@@ -2,7 +2,7 @@ import UIKit
 
 class CreateUserViewController: UIViewController {
     
-    //MARK: Properties
+    // MARK: Properties
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -33,26 +33,22 @@ class CreateUserViewController: UIViewController {
         self.emailAddressTextField.resignFirstResponder()
     }
     
-    private func createUser() {
-        let firstName = firstNameTextField.text
-        let lastName = lastNameTextField.text
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        let passwordVerify = passwordVerifyTextField.text
-        let emailAddress = emailAddressTextField.text
-        
-        // Verify that the passwords match
-        if password != passwordVerify {
-            changeCreateUserStatus(to: "Passwords do not match.")
-            
-            return
+    private func createUser(Completion block: @escaping (String) -> ()) {
+        guard let firstName = firstNameTextField.text,
+              let lastName = lastNameTextField.text,
+              let username = usernameTextField.text,
+              let password = passwordTextField.text,
+              let passwordVerify = passwordVerifyTextField.text,
+              let emailAddress = emailAddressTextField.text else {
+            fatalError("createUser(): Not all text fields could be converted to strings.")
         }
         
-        // Ensure that all fields are filled out
+        if password != passwordVerify {
+            return block("Passwords do not match.")
+        }
+        
         if firstName == "" || lastName == "" || username == "" || password == "" || emailAddress == "" {
-            changeCreateUserStatus(to: "Not all fields are filled out.")
-            
-            return
+            return block("Not all fields are filled out.")
         }
         
         let jsonPayload = [
@@ -66,23 +62,31 @@ class CreateUserViewController: UIViewController {
         
         callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
             if successful {
-                DispatchQueue.main.async {
-                    self.changeCreateUserStatus(to: (jsonResponse["message"])! as! String)
+                if let message = jsonResponse["message"] as? String {
+                    block(message)
+                } else {
+                    block("Could not parse success message.")
                 }
             } else {
-                DispatchQueue.main.async {
-                    self.changeCreateUserStatus(to: (jsonResponse["error"])! as! String)
+                if let message = jsonResponse["error"] as? String {
+                    block(message)
+                } else {
+                    block("Could not parse error message.")
                 }
             }
         }
     }
     
-    //MARK: Actions
+    // MARK: Actions
 
     @IBAction func createUserButtonTapped(_ sender: UIButton) {
         dismissAllKeyboards()
         
-        createUser()
+        createUser() { status in
+            DispatchQueue.main.async {
+                self.changeCreateUserStatus(to: status)
+            }
+        }
     }
     
 }

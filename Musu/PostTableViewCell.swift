@@ -1,23 +1,19 @@
-//
-//  PostTableViewCell.swift
-//  Musu
-//
-//  Created by Richard Zarth on 5/2/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 
-protocol PostCellDelegate : class {
-    func didPressDeleteButton(_ postID: Int)
-    func didPressLikeButton(_ postID: Int, _ currentButtonTitle: String, _ sender: PostTableViewCell)
+protocol PostCellDelegate: class {
+    func didTapDeleteButton(_ postID: Int)
+    func didTapLikeButton(_ postID: Int, _ isLiked: Bool, _ sender: PostTableViewCell, Completion block: @escaping (Bool) -> ())
 }
 
 class PostTableViewCell: UITableViewCell {
     
     weak var postCellDelegate: PostCellDelegate?
     
-    //MARK: Properties
+    var isLiked = false
+    var postID = 0
+    
+    // MARK: Properties
+    
     @IBOutlet weak var bodyTextLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
@@ -26,26 +22,47 @@ class PostTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func populateCellData(withPost post: Post) {
+        bodyTextLabel.text = post.bodyText
+        photoImageView.image = post.image
+        tagsLabel.text = post.tagsToString()
+        
+        postID = post.postID
+        isLiked = post.isLiked
+        updateLikeButtonTitle()
+        
+        deleteButton.isHidden = post.userID == Int(getUserID()) ? false : true
+    }
+    
+    func updateLikeButtonTitle() {
+        if isLiked {
+            likeButton.setTitle("Unlike", for: .normal)
+        } else {
+            likeButton.setTitle("Like", for: .normal)
+        }
     }
     
     // MARK: Actions
     
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        postCellDelegate?.didPressDeleteButton(sender.tag)
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        postCellDelegate?.didTapDeleteButton(postID)
     }
     
-    @IBAction func likeButtonPressed(_ sender: UIButton) {
-        if let currentButtonTitle = likeButton.currentTitle {
-            postCellDelegate?.didPressLikeButton(sender.tag, currentButtonTitle, self)
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
+        postCellDelegate?.didTapLikeButton(postID, isLiked, self) { successful in
+            if successful {
+                DispatchQueue.main.async {
+                    self.isLiked = !self.isLiked
+                    self.updateLikeButtonTitle()
+                }
+            }
         }
-        
     }
     
 }

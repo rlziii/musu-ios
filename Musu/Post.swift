@@ -1,16 +1,6 @@
-//
-//  Post.swift
-//  Musu
-//
-//  Created by Richard Zarth on 4/23/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 
 class Post {
-
-    //MARK: Properties
     
     var username: String
     var bodyText: String
@@ -36,4 +26,5 @@ class Post {
         // perhaps a better implementation
         // return tags.joined(separator: ", ")
     }
+    
 }

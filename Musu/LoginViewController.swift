@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func loginAttempt() {
+    private func loginAttempt(Completion block: @escaping (String) -> ()) {
         guard let username = usernameTextField.text else {
             fatalError("loginAttempt(): Could not get username from text field.")
         }
@@ -112,7 +112,6 @@ class LoginViewController: UIViewController {
         
         callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
             if successful {
-
                 guard let results = jsonResponse["results"] as? [String: Any],
                       let token = results["token"] as? String,
                       let userID = results["userID"] as? Int else {
@@ -123,16 +122,12 @@ class LoginViewController: UIViewController {
                 
                 self.performSegue(withIdentifier: "LoginToStreamSegue", sender: self)
                 
-                DispatchQueue.main.async {
-                    self.changeLoginStatus(to: "...")
-                    self.usernameTextField.text = ""
-                    self.passwordTextField.text = ""
-                }
+                block("...")
             } else {
-                DispatchQueue.main.async {
-                    if let error = jsonResponse["error"] as? String {
-                        self.changeLoginStatus(to: error)
-                    }
+                if let message = jsonResponse["error"] as? String {
+                    block(message)
+                } else {
+                    block("Could not parse error message.")
                 }
             }
         }
@@ -143,7 +138,7 @@ class LoginViewController: UIViewController {
         self.passwordTextField.resignFirstResponder()
     }
     
-    //MARK: Actions
+    // MARK: Actions
 
     // https://stackoverflow.com/a/32798799
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
@@ -153,7 +148,13 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         dismissAllKeyboards()
         
-        loginAttempt()
+        loginAttempt() { status in
+            DispatchQueue.main.async {
+                self.changeLoginStatus(to: status)
+                self.usernameTextField.text = ""
+                self.passwordTextField.text = ""
+            }
+        }
     }
     
 }

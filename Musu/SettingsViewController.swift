@@ -1,16 +1,9 @@
-//
-//  SecondViewController.swift
-//  Musu
-//
-//  Created by Richard Zarth on 4/19/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 
 class SettingsViewController: UIViewController {
     
-    //MARK: Properties
+    // MARK: Properties
+    
     @IBOutlet weak var newFirstNameTextField: UITextField!
     @IBOutlet weak var newLastNameTextField: UITextField!
     @IBOutlet weak var newUsernameTextField: UITextField!
@@ -22,26 +15,24 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func changeUpdateUserStatus(to: String) {
-        updateUserStatusLabel.text = to
+    private func changeUpdateUserStatus(to newStatus: String) {
+        updateUserStatusLabel.text = newStatus
     }
-
-    //MARK: Actions
-
-    @IBAction func logout(_ sender: UIButton) {
+    
+    private func clearKeychain() {
         // TODO: Potentially update this to call the API logout endpoint
         
         do {
-            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: getUserID(), accessGroup: KeychainConfiguration.accessGroup)
-                        
+            let tokenItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                                 account: getUserID(),
+                                                 accessGroup: KeychainConfiguration.accessGroup)
+            
             try tokenItem.deleteItem()
             print("Token deleted from Keychain.")
         } catch {
@@ -53,39 +44,33 @@ class SettingsViewController: UIViewController {
         
         UserDefaults.standard.set(false, forKey: "hasTokenSaved")
         print("hasTokenSaved set to 'false' in UserDefaults")
-        
-        self.performSegue(withIdentifier: "LogoutSegue", sender: self)
     }
     
-    @IBAction func updateUser(_ sender: UIButton) {
-        
-        // Dismiss the keyboard when login button is pressed
+    private func dismissAllKeybaords() {
         self.newFirstNameTextField.resignFirstResponder()
         self.newLastNameTextField.resignFirstResponder()
         self.newUsernameTextField.resignFirstResponder()
         self.newPasswordTextField.resignFirstResponder()
         self.newPasswordVerifyTextField.resignFirstResponder()
         self.newEmailAddressTextField.resignFirstResponder()
-        
-        let firstName = newFirstNameTextField.text
-        let lastName = newLastNameTextField.text
-        let username = newUsernameTextField.text
-        let password = newPasswordTextField.text
-        let passwordVerify = newPasswordVerifyTextField.text
-        let emailAddress = newEmailAddressTextField.text
-        
-        // Verify that the passwords match
-        if password != "" && password != passwordVerify {
-            changeUpdateUserStatus(to: "Passwords do not match.")
-            
-            return
+    }
+    
+    private func updateUser(Completion block: @escaping (String) -> ()) {
+        guard let firstName = newFirstNameTextField.text,
+              let lastName = newLastNameTextField.text,
+              let username = newUsernameTextField.text,
+              let password = newPasswordTextField.text,
+              let passwordVerify = newPasswordVerifyTextField.text,
+              let emailAddress = newEmailAddressTextField.text else {
+            fatalError("updateUser(): Not all text fields could be converted to strings.")
         }
         
-        // Ensure that all fields are filled out
+        if (password != "") && (password != passwordVerify) {
+            return block("Passwords do not match.")
+        }
+        
         if firstName == "" && lastName == "" && username == "" && password == "" && emailAddress == "" {
-            changeUpdateUserStatus(to: "At least one field must be filled out.")
-            
-            return
+            return block("At least one field must be filled out.")
         }
         
         let jsonPayload = [
@@ -97,18 +82,39 @@ class SettingsViewController: UIViewController {
             "username": username,
             "password": password,
             "emailAddress": emailAddress,
-            ] as! Dictionary<String, String>
+        ]
         
         callAPI(withJSONObject: jsonPayload) { successful, jsonResponse in
             if successful {
-                DispatchQueue.main.async {
-                    self.changeUpdateUserStatus(to: (jsonResponse["message"])! as! String)
+                if let message = jsonResponse["message"] as? String {
+                    block(message)
+                } else {
+                    block("Could not parse success message.")
                 }
             } else {
-                DispatchQueue.main.async {
-                    self.changeUpdateUserStatus(to: (jsonResponse["error"])! as! String)
+                if let message = jsonResponse["error"] as? String {
+                    block(message)
+                } else {
+                    block("Could not parse error message.")
                 }
             }
         }
     }
+    
+    //MARK: Actions
+
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        clearKeychain()
+        
+        self.performSegue(withIdentifier: "LogoutSegue", sender: self)
+    }
+    
+    @IBAction func updateUserButtonTapped(_ sender: UIButton) {
+        updateUser() { status in
+            DispatchQueue.main.async {
+                self.changeUpdateUserStatus(to: status)
+            }
+        }
+    }
+    
 }
