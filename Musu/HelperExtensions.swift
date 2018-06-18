@@ -1,11 +1,3 @@
-//
-//  HelperExtensions.swift
-//  Musu
-//
-//  Created by Richard Zarth on 5/31/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 
 // http://purelywebdesign.co.uk/tutorial/swift-underlined-text-field-tutorial/

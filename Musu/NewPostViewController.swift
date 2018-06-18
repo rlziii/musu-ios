@@ -1,11 +1,3 @@
-//
-//  NewPostViewController.swift
-//  Musu
-//
-//  Created by Richard Zarth on 5/9/18.
-//  Copyright © 2018 RLZIII. All rights reserved.
-//
-
 import UIKit
 import Cloudinary
 
@@ -34,7 +26,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    // TODO: This seems very buggy; research a better method...
+    // https://stackoverflow.com/a/45382225
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -42,26 +34,19 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
             }
         }
     }
-    
-    // TODO: This seems very buggy; research a better method...
-    // https://stackoverflow.com/a/45382225
+
     @objc func keyboardWillHide(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y != 0 {
-//                self.view.frame.origin.y += keyboardSize.height
-//            }
-//        }
-        
         self.view.frame.origin.y = 0
+    }
+    
+    private func dismissAllKeyboards() {
+        textBodyTextView.resignFirstResponder()
+        tagsTextView.resignFirstResponder()
     }
     
     // This will close all keyboards when touching outside of the keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        textBodyTextView.resignFirstResponder()
-        tagsTextView.resignFirstResponder()
-
-        // The method below will potentially close all keyboards possible
-        // self.view.endEditing(true)
+        dismissAllKeyboards()
     }
     
     // Close the keyboard when the "Done" button is pressed.
@@ -77,23 +62,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Dismiss the image picker if the user canceled
+        // Dismiss the image picker if the user cancelled
         dismiss(animated: true, completion: nil)
     }
     
@@ -130,10 +103,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate, UIImagePicker
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             
-            // Only allow photos to be picked, not taken
+            // Only allow photos to be taken, not picked
             imagePickerController.sourceType = .camera
             
-            // Make sure NewPostViewController is notified when the user picks an image
+            // Make sure NewPostViewController is notified when the user takes an image
             imagePickerController.delegate = self
             
             present(imagePickerController, animated: true, completion: nil)
