@@ -267,20 +267,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdQ-Z6-5vj">
-                                <rect key="frame" x="144" y="446" width="87" height="30"/>
-                                <state key="normal" title="Update User"/>
+                                <rect key="frame" x="137.66666666666666" y="439.66666666666669" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="snD-eu-WDL"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="update user"/>
                                 <connections>
                                     <action selector="updateUserButtonTapped:" destination="2sR-0C-mvi" eventType="touchUpInside" id="3Fg-j9-Pxj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnV-HI-y5s">
-                                <rect key="frame" x="180.66666666666666" y="526" width="14" height="21"/>
+                                <rect key="frame" x="180.66666666666666" y="519.66666666666663" width="14" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NR0-vj-rDD">
-                                <rect key="frame" x="87.666666666666686" y="116" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NR0-vj-rDD">
+                                <rect key="frame" x="87.666666666666686" y="187.66666666666666" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="1uy-JF-zvG"/>
                                 </constraints>
@@ -288,8 +293,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uXs-7c-s2D">
-                                <rect key="frame" x="87.666666666666686" y="171" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Last Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uXs-7c-s2D">
+                                <rect key="frame" x="87.666666666666686" y="229.66666666666666" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="aUo-1u-ZWV"/>
                                 </constraints>
@@ -297,8 +302,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-Z8-uAB">
-                                <rect key="frame" x="87.666666666666686" y="281" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zkj-Z8-uAB">
+                                <rect key="frame" x="87.666666666666686" y="313.66666666666669" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ev7-Rc-Vnz"/>
                                 </constraints>
@@ -306,8 +311,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1v-t6-MAc">
-                                <rect key="frame" x="87.666666666666686" y="391" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1v-t6-MAc">
+                                <rect key="frame" x="87.666666666666686" y="397.66666666666669" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="q9x-m9-uGl"/>
                                 </constraints>
@@ -315,8 +320,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-lK-iXg">
-                                <rect key="frame" x="87.666666666666686" y="226" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2d1-lK-iXg">
+                                <rect key="frame" x="87.666666666666686" y="271.66666666666669" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="3cb-E6-dH0"/>
                                 </constraints>
@@ -324,8 +329,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password (verify)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKg-SV-RjY">
-                                <rect key="frame" x="87.666666666666686" y="336" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password (verify)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKg-SV-RjY">
+                                <rect key="frame" x="87.666666666666686" y="355.66666666666669" width="200" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="PAN-wF-KGt"/>
                                 </constraints>
@@ -334,14 +339,14 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrX-dc-SAw">
-                                <rect key="frame" x="163.66666666666666" y="61" width="48" height="30"/>
+                                <rect key="frame" x="163.66666666666666" y="132.66666666666666" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="2sR-0C-mvi" eventType="touchUpInside" id="eCw-qc-Ne9"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.91372549020000005" green="0.1137254902" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uXs-7c-s2D" firstAttribute="top" secondItem="NR0-vj-rDD" secondAttribute="bottom" constant="25" id="0pE-jr-X3I"/>
                             <constraint firstItem="Zkj-Z8-uAB" firstAttribute="top" secondItem="2d1-lK-iXg" secondAttribute="bottom" constant="25" id="3wP-8c-Xqt"/>
@@ -372,6 +377,7 @@
                         <outlet property="newPasswordTextField" destination="Zkj-Z8-uAB" id="8Vh-pO-a44"/>
                         <outlet property="newPasswordVerifyTextField" destination="XKg-SV-RjY" id="ia7-7U-DvP"/>
                         <outlet property="newUsernameTextField" destination="2d1-lK-iXg" id="GhP-V5-07z"/>
+                        <outlet property="updateUserButton" destination="tdQ-Z6-5vj" id="MVA-BS-tJ4"/>
                         <outlet property="updateUserStatusLabel" destination="pnV-HI-y5s" id="TxQ-0r-9XG"/>
                         <segue destination="8Kq-Xf-zPd" kind="unwind" identifier="LogoutSegue" unwindAction="prepareForUnwindWithSegue:" id="R11-tv-BFY"/>
                     </connections>
@@ -740,7 +746,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yPl-Gw-e4h" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xQH-xw-Qcm">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="xQH-xw-Qcm">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

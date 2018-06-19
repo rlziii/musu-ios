@@ -11,10 +11,21 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var newPasswordVerifyTextField: UITextField!
     @IBOutlet weak var newEmailAddressTextField: UITextField!
     
+    @IBOutlet weak var updateUserButton: UIButton!
+    
     @IBOutlet weak var updateUserStatusLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newFirstNameTextField.underlined()
+        newLastNameTextField.underlined()
+        newUsernameTextField.underlined()
+        newPasswordTextField.underlined()
+        newPasswordVerifyTextField.underlined()
+        newEmailAddressTextField.underlined()
+        
+        updateUserButton.layer.cornerRadius = 4
     }
 
     override func didReceiveMemoryWarning() {
