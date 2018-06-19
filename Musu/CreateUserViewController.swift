@@ -11,9 +11,19 @@ class CreateUserViewController: UIViewController {
     @IBOutlet weak var passwordVerifyTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var createUserStatusLabel: UILabel!
+    @IBOutlet weak var createUserButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstNameTextField.underlined()
+        lastNameTextField.underlined()
+        usernameTextField.underlined()
+        passwordTextField.underlined()
+        passwordVerifyTextField.underlined()
+        emailAddressTextField.underlined()
+        
+        createUserButton.layer.cornerRadius = 4
     }
 
     override func didReceiveMemoryWarning() {

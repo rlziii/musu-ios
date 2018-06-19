@@ -21,10 +21,10 @@ class Post {
     }
     
     func tagsToString() -> String {
-        return tags.description
+//        return tags.description
         
         // perhaps a better implementation
-        // return tags.joined(separator: ", ")
+         return tags.joined(separator: ", ")
     }
     
 }

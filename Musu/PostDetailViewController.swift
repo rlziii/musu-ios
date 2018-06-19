@@ -14,6 +14,12 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bodyTextLabel.numberOfLines = 0
+        bodyTextLabel.lineBreakMode = .byWordWrapping
+        
+        tagsLabel.numberOfLines = 0
+        tagsLabel.lineBreakMode = .byWordWrapping
+        
         if let post = post {
             usernameLabel.text = post.username
             imageView.image = post.image
