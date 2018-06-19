@@ -86,14 +86,14 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Personal-->
+        <!--Posts Personal View Controller-->
         <scene sceneID="ZAF-XS-ZHt">
             <objects>
                 <tableViewController id="7mz-cr-SZN" customClass="PostsPersonalViewController" customModule="Musu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="13Q-D9-ogf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9LA-NT-qgI">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -148,6 +148,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="Poi-nl-LAC" id="5ax-yu-qK5"/>
                                     <outlet property="deleteButton" destination="suU-tG-cF9" id="bNe-nT-uuo"/>
@@ -166,11 +167,11 @@
                             <outlet property="delegate" destination="7mz-cr-SZN" id="igL-sl-s0R"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Personal" id="9qd-wR-GYc"/>
+                    <navigationItem key="navigationItem" id="Del-dO-1OG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNO-pg-flU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392.8000000000002" y="-1025.615763546798"/>
+            <point key="canvasLocation" x="3335.1999999999998" y="-1025.615763546798"/>
         </scene>
         <!--Latest-->
         <scene sceneID="Hx1-bC-FRj">
@@ -179,7 +180,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sTa-v3-H9e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xQY-ew-glw">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -234,6 +235,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="JE3-OF-8yd" id="53b-cL-7O6"/>
                                     <outlet property="deleteButton" destination="jwB-St-Tlc" id="5x3-XU-cj3"/>
@@ -394,7 +396,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nc-0K-fHL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fva-nv-6y0">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -449,6 +451,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="bodyTextLabel" destination="f8M-qn-okG" id="sVX-Rx-SiZ"/>
                                     <outlet property="deleteButton" destination="PSe-ct-1b2" id="fLC-mY-gOd"/>
@@ -507,7 +510,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1Nr-wm-tdW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Post" id="JfK-lN-FyV">
@@ -579,7 +582,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zl8-Jp-fbp"/>
                     </view>
                     <navigationItem key="navigationItem" id="6n6-VJ-0W3">
@@ -603,7 +606,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3990" y="-1026"/>
+            <point key="canvasLocation" x="4932" y="-1026.3546798029556"/>
         </scene>
         <!--Create User-->
         <scene sceneID="wg7-f3-ORb">
@@ -752,7 +755,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="7mz-cr-SZN" kind="relationship" relationship="viewControllers" id="RyB-oY-alQ"/>
+                        <segue destination="pxx-2O-8C0" kind="relationship" relationship="viewControllers" id="RyB-oY-alQ"/>
                         <segue destination="vbp-nE-rkG" kind="relationship" relationship="viewControllers" id="ELZ-Wi-IIB"/>
                         <segue destination="pXy-9R-0mv" kind="relationship" relationship="viewControllers" id="RZF-Oz-IPx"/>
                         <segue destination="2sR-0C-mvi" kind="relationship" relationship="viewControllers" id="LV2-vR-HU5"/>
@@ -770,6 +773,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nbm-Ef-AWb">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -788,6 +792,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wzu-Tp-EuG">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -796,7 +801,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAn-Za-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3201" y="-1026"/>
+            <point key="canvasLocation" x="4143.1999999999998" y="-1026.3546798029556"/>
+        </scene>
+        <!--Personal-->
+        <scene sceneID="bF2-DM-jia">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pxx-2O-8C0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Personal" id="9qd-wR-GYc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="jQb-dU-pcD">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LYA-Js-9uU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="7mz-cr-SZN" kind="relationship" relationship="rootViewController" id="Q6P-EF-wz4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b0x-EC-LpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392.8000000000002" y="-1025.615763546798"/>
         </scene>
     </scenes>
     <resources>
@@ -807,7 +834,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IRK-2c-TO0"/>
-        <segue reference="WuJ-jy-MOB"/>
+        <segue reference="ifA-lV-oPH"/>
+        <segue reference="qQg-Tt-mS1"/>
     </inferredMetricsTieBreakers>
 </document>
